@@ -55,7 +55,7 @@ setup(
     author="Lucas Sawade",
     author_email="lsawade@princeton.edu",
     license='GNU Lesser General Public License, Version 3',
-    keywords="Global CMT, Inversion, Moment Tensor",
+    keywords="Fun, Education, Learning, Programming",
     url='https://github.com/lsawade/how_to_make_a_python_package',
     packages=find_packages(),
     package_dir={"": "."},

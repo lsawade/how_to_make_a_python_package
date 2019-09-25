@@ -112,6 +112,25 @@ documentation on the side. When the functions in the package are updated, so
 will the documentation.
 
 
+Offline Docs
+============
+
+To create either the ``pdf`` or the ``html`` files, simply cd into the
+``docs`` directory and
+
+.. code-block:: bash
+
+    # For PDF
+    make pdf
+
+    # For HTML
+    make html
+
+The built files can then be found in ``docs/build/pdf`` or ``docs/build/html``.
+The pdf, I assume, you can find yourself, but if you want to open the ``html``
+it's the ``index.html`` file you want to open. It brings you directly to
+offline webpage when opened.
+
 
 ReadTheDocs
 ===========
