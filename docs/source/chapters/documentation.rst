@@ -144,7 +144,7 @@ necessary to build your documentation and how to build it. Let's take a look.
     :code: yaml
 
 There are a few important steps here. The first entry in this file that needs
-to be manually set is the ``sphinx` keyword. The location of the conf.py
+to be manually set is the ``sphinx`` keyword. The location of the conf.py
 needs to be set in relation to the repository.The second one is the ``formats``
 keyword, which if you want ``html``, ``PDF`` and ``EPub`` built and
 donwloadable from the page, is simply 'all'. Otherwise specify.
