@@ -10,7 +10,7 @@ the installation.
 ``setup.py``
 ++++++++++++
 
-In the ``setup.py file used for this project, there are two small things that
+In the ``setup.py`` file used for this project, there are two small things that
 make your life easier, but first of all let's look at it.
 
 .. include:: ../../../setup.py
