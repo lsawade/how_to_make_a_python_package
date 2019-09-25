@@ -1,5 +1,5 @@
 Documentation
-------------
+-------------
 
 Everyone should want their code documented. The simple reason for that is
 that nobody will be able to use your code of there is no documentation. So,
@@ -26,14 +26,14 @@ Let's say you have created your ``conda environment`` using the
 package directory create a docs subdirectory just as in the ``htmapp``
 repository and ``cd`` into it
 
-.. code-block:: python
+.. code-block:: bash
 
     # Provided you are in your package repo
     $ mkdir docs && cd docs
 
 Then,
 
-.. code-block:: python
+.. code-block:: bash
 
     $ sphinx-quickstart
 

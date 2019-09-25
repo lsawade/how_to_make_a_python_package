@@ -27,8 +27,10 @@ introduce the example module.
 ``matpy`` contains one module called ``matrixmultiplication.py`` and then
 ``test_matmul_and_dot.py`` which is the where the unittests are located.
 
-In the module there are two functions and one class. :func:`matpy.matmul`
-is just a wrapper around :func:`numpy.matmul`, and :func:`matpy.dotprod`
+In the module there are two functions and one class.
+:func:`matpy.matrixmultiplication.matmul`
+is just a wrapper around :func:`numpy.matmul`, and
+:func:`matpy.matrixmultiplication.dotprod`
 is just a wrapper around :func:`numpy.dot`. The third component is the
 :class:`matpy.MatrixMultiplication`, which uses the two functions as methods.
 S

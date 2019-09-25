@@ -18,10 +18,11 @@ import unittest
 import numpy as np
 from ..matrixmultiplication import matmul
 from ..matrixmultiplication import dotprod
+from ..matrixmultiplication import MatrixMultiplication
 
 
 class TestMatMul(unittest.TestCase):
-    """"A sample test class to check if your modules functions ar
+    """"A sample test class to check if your modules' functions ar
     functioning."""
 
     def test_raise_shape_error(self):
@@ -65,7 +66,7 @@ class TestMatMul(unittest.TestCase):
 
 
 class TestDot(unittest.TestCase):
-    """"A sample test class to check if your modules functions ar
+    """"A sample test class to check if your modules' functions ar
     functioning."""
 
     def test_raise_shape_error(self):
@@ -106,6 +107,40 @@ class TestDot(unittest.TestCase):
 
         # Check result
         self.assertTrue(np.all(np.array([[4, 1], [2, 2]] == matmul(a, b))))
+
+
+class TestMM(unittest.TestCase):
+    """"A sample test class to check if your modules' functions are
+    functioning."""
+
+    def test_raise_method_error(self):
+        """Tests if error is raised when either A or B does not have 2
+        dimensions, but here mainly for class initiation. As the methods
+        themselves are already proven to work."""
+
+        # A does not have 2 dimensions
+        a = np.array([[[1, 0], [0, 1]], [[0, 1], [0, 1]]])
+        b = np.array([[4, 1], [2, 2]])
+
+        # Assign wrong method to raise error
+        method = "blub"
+
+        with self.assertRaises(ValueError):
+            MM = MatrixMultiplication(a, b, method=method)
+
+        # Assign right method to check for size error
+        method = "matmul"
+        with self.assertRaises(ValueError):
+            MM = MatrixMultiplication(a, b, method=method)
+            MM()
+
+        # B does not have 2 dimensions
+        a = np.array([[1, 0], [0, 1]])
+        b = np.array([[[1, 0], [0, 1]], [[0, 1], [0, 1]]])
+
+        with self.assertRaises(ValueError):
+            MM = MatrixMultiplication(a, b, method=method)
+            print(MM())
 
 
 if __name__ == "__main__":

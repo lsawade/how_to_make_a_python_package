@@ -13,6 +13,37 @@ how to actually use classes.
 """
 
 import numpy as np
+import sys
+
+
+
+class MatrixMultiplication(object):
+    """Class to handle 2D matrix multiplication."""
+
+    def __init__(self, a, b, method="matmul"):
+        """ This function initializes the MatrixMultiplication class.
+
+        :param a:
+        :param b:
+        """
+
+        if method not in ["matmul", "dotprod"]:
+            raise ValueError("Method not available")
+
+        # Just assigning the variables
+        self.a = a
+        self.b = b
+
+        # Here sys.modules[__name__] refers to the module it if you had
+        # imported and outside module, e.g., `import os`, to get the join
+        # function you would have to write
+        # getattr(getattr(os, "path"), "join").
+        self.method = getattr(sys.modules[__name__], method)
+        print(self.method)
+
+    def __call__(self):
+        return self.method(self.a, self.b)
+
 
 
 def matmul(a, b):
@@ -30,7 +61,8 @@ def matmul(a, b):
     if len(a.shape) != 2 or len(b.shape) != 2:
         raise ValueError("A or B is not of dimension 2")
     elif a.shape[1] != b.shape[0]:
-        raise ValueError("A's 2nd dimension does not match B's first dimension")
+        raise ValueError(
+            "A's 2nd dimension does not match B's first dimension")
 
     # Compute the multiplication
     c = np.matmul(a, b)
@@ -53,13 +85,10 @@ def dotprod(a, b):
     if len(a.shape) != 2 or len(b.shape) != 2:
         raise ValueError("A or B is not of dimension 2")
     elif a.shape[1] != b.shape[0]:
-        raise ValueError("A's 2nd dimension does not match B's first dimension")
+        raise ValueError(
+            "A's 2nd dimension does not match B's first dimension")
 
     # Compute the multiplication
     c = np.dot(a, b)
 
     return c
-
-
-# class MatrixMulti
-
