@@ -1,16 +1,19 @@
-.. How to make a python package documentation master file, created by
-   sphinx-quickstart on Wed Sep 25 00:01:33 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+How to make a python package
+============================
 
-Welcome to How to make a python package's documentation!
-========================================================
+This is hopefully helpful, to someone somewhere that struggled with the same
+stuff that I struggled with...
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   chapters/introduction
+   chapters/installation
+   chapters/unittesting
+   chapters/documentation
+   chapters/API
 
 
 
