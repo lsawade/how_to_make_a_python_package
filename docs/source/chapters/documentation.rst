@@ -1,3 +1,5 @@
+.. _doc-label: doc.rst
+
 Documentation
 -------------
 
@@ -79,6 +81,37 @@ to look at. There are other themes out there. But I just like this one.
 =============
 
 The ``index.rst`` is used to control the content in your documentation.
-Usually this is done by the so-called ``toctree`` directive, which allows us,
+Usually this is done by the so-called ``toctree`` directive (table of
+contents tree), which allows us to include files so that not the complete
+documentation has to be written in one file. A standard file (the one of this
+documentation) looks as follows:
+
+.. include:: ../index.rst
+    :code: rst
+
+This way, we can write a very user-friendly structured documentation.
 
 
+
+API
+===
+
+There's one step involved in making the documentation "automatic". We need
+some file to actually call in the "docstrings" from the package files. The
+usual way of doing this is to have a function library at the end of your
+documentation. Here, it is also the last section: :ref:`api-label`. The
+source file is very simple:
+
+.. include:: API.rst
+    :code: rst
+
+As you can see, we have exactly one ``.. automodule::`` per python module
+(file). The cool thing about this is that we don't have to
+change the actual reference to the function or even write manual
+documentation on the side. When the functions in the package are updated, so
+will the documentation.
+
+
+
+ReadTheDocs
+===========

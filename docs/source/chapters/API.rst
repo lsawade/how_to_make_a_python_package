@@ -1,3 +1,5 @@
+.. _api-label:
+
 ``matpy`` API
 -------------
 
