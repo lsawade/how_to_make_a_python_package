@@ -116,4 +116,28 @@ will the documentation.
 ReadTheDocs
 ===========
 
-What's nice about Python, Sphinx, and ReStructuredText that
+What's nice about Python, Sphinx, and ReStructuredText that with a few simple
+tricks your documentation is online. The key ingredient to make that happen
+is the ``.readthedocs.yml`` file. This file tells the server what is
+necessary to build your documentation and how to build it. Let's take a look.
+
+.. include:: ../../../.readthedocs.yml
+    :code: yaml
+
+There are a few important steps here. The first entry in this file that needs
+to be manually set is the ``sphinx` keyword. The location of the conf.py
+needs to be set in relation to the repository.The second one is the ``formats``
+keyword, which if you want ``html``, ``PDF`` and ``EPub`` built and
+donwloadable from the page, is simply 'all'. Otherwise specify.
+Much like for the installation and the unit testing we also need to specify the
+``environment.yml`` with the keywords ``conda`` and ``environment``. Last but
+not least, we have to define Python version and method of installation. In
+this case, we'll let ``pip`` do the job.
+
+Having this things set, head over to `ReadTheDocs <https://readthedocs.org/>`_
+and log in. If you do not have an account there, I would suggest logging in
+using your Github account. Then import the github repository. That should be
+it since the ``.readthedocs.yml`` does all the configuring. Usually it takes
+a bit until the build is done, but eventually you can click on the ``View
+Docs`` button and your good to go.
+
