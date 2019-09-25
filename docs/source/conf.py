@@ -35,6 +35,9 @@ extensions = ['sphinx.ext.autodoc',
               'm2r'
 ]
 
+# For docstring __init__ documentation
+autoclass_content = 'both'
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 

@@ -16,44 +16,25 @@ import numpy as np
 import sys
 
 
-
-class MatrixMultiplication(object):
-    """Class to handle 2D matrix multiplication."""
-
-    def __init__(self, a, b, method="matmul"):
-        """ This function initializes the MatrixMultiplication class.
-
-        :param a:
-        :param b:
-        """
-
-        if method not in ["matmul", "dotprod"]:
-            raise ValueError("Method not available")
-
-        # Just assigning the variables
-        self.a = a
-        self.b = b
-
-        # Here sys.modules[__name__] refers to the module it if you had
-        # imported and outside module, e.g., `import os`, to get the join
-        # function you would have to write
-        # getattr(getattr(os, "path"), "join").
-        self.method = getattr(sys.modules[__name__], method)
-        print(self.method)
-
-    def __call__(self):
-        return self.method(self.a, self.b)
-
-
-
 def matmul(a, b):
     """ Standard wrapper around numnpy's function.
 
     :param a: matrix A
-    :type a: numpy.array
+    :type a: numpy.ndarray
     :param b: matrix B
-    :type a: numpy.array
-    :return: multiply matrix
+    :type b: numpy.ndarray
+    :return: multiplied matrix
+
+    Usage:
+        Assume that a and b are 2D numpy arrays that match in size for
+        multiplication.
+
+        .. code-block:: python
+
+            >>> from matpy.matrixmultiplication import matmul
+            >>> c = matmul(a, b)
+            >>> print(c)
+
     """
 
     # First check whether the matrices can be multiplied! And for this case
@@ -74,10 +55,21 @@ def dotprod(a, b):
     """ Standard wrapper around numnpy's function.
 
     :param a: matrix A
-    :type a: numpy.array
+    :type a: numpy.ndarray
     :param b: matrix B
-    :type a: numpy.array
-    :return: multiply matrix
+    :type b: numpy.ndarray
+    :return: multiplied matrix
+
+     Usage:
+        Assume that a and b are 2D numpy arrays that match in size for
+        multiplication.
+
+        .. code-block:: python
+
+            >>> from matpy.matrixmultiplication import dotprod
+            >>> c = dotprod(a, b)
+            >>> print(c)
+
     """
 
     # First check whether the matrices can be multiplied! And for this case
@@ -92,3 +84,62 @@ def dotprod(a, b):
     c = np.dot(a, b)
 
     return c
+
+
+class MatrixMultiplication(object):
+    """Class to handle 2D matrix multiplication.
+
+    Usage:
+        Assume that a and b are 2D numpy arrays that match in size for
+        multiplication.
+
+        .. code-block:: python
+
+            >>> from matpy.matrixmultiplication import MatrixMultiplication
+            >>> MM = MatrixMultiplication(a, b, method="matmul")
+            >>> c = MM()
+            >>> print(c)
+
+        Or using the other method
+
+        .. code-block:: python
+
+            >>> from matpy.matrixmultiplication import MatrixMultiplication
+            >>> MM = MatrixMultiplication(a, b, method="dotprod")
+            >>> c = MM()
+            >>> print(c)
+    """
+
+    def __init__(self, a, b, method="matmul"):
+        """ This function initializes the MatrixMultiplication class.
+
+        :param a: matrix A
+        :type a: numpy.ndarray
+        :param b: matrix B
+        :type b: numpy.ndarray
+
+        """
+
+        if method not in ["matmul", "dotprod"]:
+            raise ValueError("Method not available")
+
+        # Just assigning the variables
+        self.a = a
+        self.b = b
+
+        # Here sys.modules[__name__] refers to the module it if you had
+        # imported and outside module, e.g., `import os`, to get the join
+        # function you would have to write
+        # getattr(getattr(os, "path"), "join").
+        self.method = getattr(sys.modules[__name__], method)
+        print(self.method)
+
+    def __call__(self):
+        """Simple call function that executes the multiplication.
+
+        .. note::
+
+            This ``__call__`` function can of course take arguments. Let's
+            say you create an interpolator with a specified amount of points.
+            You could stick in your query points as arguments."""
+        return self.method(self.a, self.b)

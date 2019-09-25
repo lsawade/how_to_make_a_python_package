@@ -59,7 +59,8 @@ shown below:
     extensions = ['sphinx.ext.autodoc',
                   'sphinx.ext.viewcode',
                   'm2r'
-
+    ...
+    autoclass_content = 'both'
     ...
 
     html_theme = 'sphinx_rtd_theme'
@@ -68,8 +69,16 @@ shown below:
 
 The extensions enable the possibility on auto documenting your code, meaning
 the docstrings of your functions and classes are gonna be read and added when
-the ``.. auto-module`` directive is called.
+the ``.. auto-module`` directive is called. ``autoclass_content = 'both'``
+makes sure that when a class is documented in your code the ``__init__`` part
+will be documented as well. Finally, the ``sphinx_rtd_theme`` is simply nice
+to look at. There are other themes out there. But I just like this one.
 
 
+``index.rst``
+=============
+
+The ``index.rst`` is used to control the content in your documentation.
+Usually this is done by the so-called ``toctree`` directive, which allows us,
 
 
