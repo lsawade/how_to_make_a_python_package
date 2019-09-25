@@ -16,11 +16,11 @@ whether your function throws an error, when it should.
 
 import unittest
 import numpy as np
-from matrixmultiplication import matmul
+from ..matrixmultiplication import matmul
+from ..matrixmultiplication import dotprod
 
 
-
-class TestSomeModule(unittest.TestCase):
+class TestMatMul(unittest.TestCase):
     """"A sample test class to check if your modules functions ar
     functioning."""
 
@@ -52,6 +52,50 @@ class TestSomeModule(unittest.TestCase):
         # Check if error is raised
         with self.assertRaises(ValueError):
             matmul(a, b)
+
+    def test_multiplication(self):
+        """Test the multiplication itself."""
+
+        # Define matrix content.
+        a = np.array([[1, 0], [0, 1]])
+        b = np.array([[4, 1], [2, 2]])
+
+        # Check result
+        self.assertTrue(np.all(np.array([[4, 1], [2, 2]] == matmul(a, b))))
+
+
+class TestDot(unittest.TestCase):
+    """"A sample test class to check if your modules functions ar
+    functioning."""
+
+    def test_raise_shape_error(self):
+        """Tests if error is raised when either A or B does not have 2
+        dimensions"""
+
+        # A does not have 2 dimensions
+        a = np.array([[[1, 0], [0, 1]], [[0, 1], [0, 1]]])
+        b = np.array([[4, 1], [2, 2]])
+
+        with self.assertRaises(ValueError):
+            dotprod(a, b)
+
+        # B does not have 2 dimensions
+        a = np.array([[1, 0], [0, 1]])
+        b = np.array([[[1, 0], [0, 1]], [[0, 1], [0, 1]]])
+
+        with self.assertRaises(ValueError):
+            dotprod(a, b)
+
+    def test_raise_shape_match_error(self):
+        """Tests whether an error is thrown when b doesn't match a."""
+
+        # B has more rows than a has columns!
+        a = np.array([[1, 0], [0, 1]])
+        b = np.array([[4, 1], [2, 2], [2, 2]])
+
+        # Check if error is raised
+        with self.assertRaises(ValueError):
+            dotprod(a, b)
 
     def test_multiplication(self):
         """Test the multiplication itself."""
