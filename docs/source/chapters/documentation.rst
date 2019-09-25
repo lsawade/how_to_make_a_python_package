@@ -67,8 +67,8 @@ shown below:
     ...
 
 The extensions enable the possibility on auto documenting your code, meaning
-the docstrings of yout functions and classes are gonna be read and add as a
-chapter.
+the docstrings of your functions and classes are gonna be read and added when
+the ``.. auto-module`` directive is called.
 
 
 
