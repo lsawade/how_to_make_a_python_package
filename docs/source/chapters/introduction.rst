@@ -7,6 +7,9 @@ available to people. So, in the following few pages, you can follow some
 instructions, tips, and tricks on how to create your own package that others
 can easily install on their machine.
 
+
+.. _module-label:
+
 The module
 ++++++++++
 
