@@ -15,7 +15,7 @@ reproducible in the future.
 ## Where do you start?
 
 The simplest way is to take a peak into the documentation which ich located 
-here: <somelink>. There, I will explain and go through the few necessary 
+here: [Documentation](https://how-to-make-a-python-package.readthedocs.io/en/latest/). There, I will explain and go through the few necessary 
 steps starting with your modules.
 
 
