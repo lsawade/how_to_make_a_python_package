@@ -16,9 +16,9 @@ whether your function throws an error, when it should.
 
 import unittest
 import numpy as np
-from ..matrixmultiplication import matmul
-from ..matrixmultiplication import dotprod
-from ..matrixmultiplication import MatrixMultiplication
+from matpy.matrixmultiplication import matmul
+from matpy.matrixmultiplication import dotprod
+from matpy.matrixmultiplication import MatrixMultiplication
 
 
 class TestMatMul(unittest.TestCase):

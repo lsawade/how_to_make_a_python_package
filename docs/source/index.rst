@@ -1,7 +1,7 @@
 How to make a python package
 ============================
 
-This is hopefully helpful, to someone somewhere that struggled with the same
+This is hopefully helpful, to someone, somewhere who struggled with the same
 stuff that I struggled with...
 
 The whole documentation is referring to the following Github repository:

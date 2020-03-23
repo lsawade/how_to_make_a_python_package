@@ -1,4 +1,4 @@
-# Sample package structure
+# Sample package structure  [![Build Status](https://travis-ci.com/lsawade/how_to_make_a_python_package.svg?branch=master)](https://travis-ci.com/lsawade/how_to_make_a_python_package)[![Documentation Status](https://readthedocs.org/projects/how-to-make-a-python-package/badge/?version=latest)](https://how-to-make-a-python-package.readthedocs.io/en/latest/?badge=latest)
 
 This is a tiny, little package that shows how to easily setup a python 
 package that includes
@@ -14,9 +14,10 @@ reproducible in the future.
 
 ## Where do you start?
 
-The simplest way is to take a peak into the documentation which ich located 
-here: [Documentation](https://how-to-make-a-python-package.readthedocs.io/en/latest/). There, I will explain and go through the few necessary 
-steps starting with your modules.
+The simplest way is to take a peak into the documentation which is located 
+here: [Documentation](https://how-to-make-a-python-package.readthedocs.io/en/latest/). 
+There, I will explain and go through the few necessary steps to get you started
+to package your modules.
 
 
 ## Installation of this package
