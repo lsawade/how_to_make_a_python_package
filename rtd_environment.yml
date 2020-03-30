@@ -1,8 +1,0 @@
-name: htmapp
-channels:
-  - conda-forge
-dependencies:
-  - pip
-  - pip:
-    - sphinx
-    - sphinx-rtd-theme

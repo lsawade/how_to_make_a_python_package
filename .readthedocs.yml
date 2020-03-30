@@ -18,7 +18,7 @@ formats: [pdf]
 
 # Setting up the conda environment
 conda:
-  environment: rtd_environment.yml
+  environment: environment.yml
 
 # Optionally set the version of Python and requirements required to build your docs
 python:
@@ -26,4 +26,4 @@ python:
    install:
       - method: pip
         path: .
-   system_packages: true
+   system_packages: False
