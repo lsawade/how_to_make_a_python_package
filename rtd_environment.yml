@@ -1,0 +1,8 @@
+name: htmapp
+channels:
+  - conda-forge
+dependencies:
+  - pip
+  - pip:
+    - sphinx==2.2.0
+    - sphinx-rtd-theme==0.4.3
