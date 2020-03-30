@@ -1,6 +1,4 @@
 name: htmapp
-channels:
-  - conda-forge
 dependencies:
   - numpy==1.17.2
   - pip
