@@ -23,7 +23,7 @@ The outline is as follows:
 3. Add the print stream handler and a formatter.
 
 The formatter is optional but convenient. instead of the
-:mod:`matpy.log_util.CustomFormatter`, a "simple"
+:class:`matpy.log_util.CustomFormatter`, a "simple"
 
 .. code-block:: python
 

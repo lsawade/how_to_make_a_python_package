@@ -10,6 +10,13 @@ Matrix multiplication
     :members:
     :show-inheritance:
 
+Logging Utility
++++++++++++++++++++++
+
+.. automodule:: matpy.log_util
+    :members:
+    :show-inheritance:
+
 Testing
 +++++++
 
