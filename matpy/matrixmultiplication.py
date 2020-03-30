@@ -12,6 +12,7 @@ how to actually use classes.
 
 """
 
+from . import logger
 import numpy as np
 import sys
 
@@ -31,9 +32,9 @@ def matmul(a, b):
 
         .. code-block:: python
 
-            >>> from matpy.matrixmultiplication import matmul
-            >>> c = matmul(a, b)
-            >>> print(c)
+            from matpy.matrixmultiplication import matmul
+            c = matmul(a, b)
+            print(c)
 
     """
 
@@ -45,7 +46,28 @@ def matmul(a, b):
         raise ValueError(
             "A's 2nd dimension does not match B's first dimension")
 
-    # Compute the multiplication
+    ''' Below just some usages of loggers. different levels of logging 
+    can be set to control the printed output of a package.'''
+
+    # Just for testing the loggers.
+    logger.debug("Test Debug")
+    logger.error("Test Error")
+    logger.critical("Test Critical")
+
+    # Logging the matrices
+    logger.info("A:")
+    for row in a:
+        logger.info("    " + np.array_str(row, max_line_width=np.inf))
+    if a.size > 4:
+        logger.warning("Matrix size exceeds 4 elements.")
+
+    logger.info("B:")
+    for row in b:
+        logger.info("    " + np.array_str(row, max_line_width=np.inf))
+
+    if b.size > 4:
+        logger.warning("Matrix size exceeds 4 elements.")
+    # Compute the stuff
     c = np.matmul(a, b)
 
     return c
@@ -123,16 +145,16 @@ class MatrixMultiplication(object):
         if method not in ["matmul", "dotprod"]:
             raise ValueError("Method not available")
 
+        logger.info("Initializing matrices...")
         # Just assigning the variables
         self.a = a
         self.b = b
 
-        # Here sys.modules[__name__] refers to the module it if you had
+        # Here sys.modules[__name__] refers to the module if you had
         # imported and outside module, e.g., `import os`, to get the join
         # function you would have to write
         # getattr(getattr(os, "path"), "join").
         self.method = getattr(sys.modules[__name__], method)
-        print(self.method)
 
     def __call__(self):
         """Simple call function that executes the multiplication.
