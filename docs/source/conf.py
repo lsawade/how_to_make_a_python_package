@@ -32,7 +32,6 @@ release = '0.0.1'
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
-              'm2r'
 ]
 
 # For docstring __init__ documentation

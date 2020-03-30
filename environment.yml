@@ -7,5 +7,4 @@ dependencies:
   - pip:
     - sphinx==2.2.0
     - sphinx-rtd-theme==0.4.3
-    - m2r==0.2.1
     - pytest==5.1.3
