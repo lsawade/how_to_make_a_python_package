@@ -14,7 +14,6 @@ The whole documentation is referring to the following Github repository:
    chapters/introduction
    chapters/installation
    chapters/unittesting
-   chapters/logging
    chapters/documentation
    chapters/API
 
