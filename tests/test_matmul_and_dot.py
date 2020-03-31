@@ -1,7 +1,7 @@
 """
-This is a small script that shows how to simply create a test class. The
-reason why a test class is the superior choice over a function is that it can
-set up a testing environment, e.g. a test directory structure needed to check
+This is a small script that shows how to simply create a tests class. The
+reason why a tests class is the superior choice over a function is that it can
+set up a testing environment, e.g. a tests directory structure needed to check
 existing files. The unittest testclass also contains an easy way to check
 whether your function throws an error, when it should.
 
@@ -9,8 +9,9 @@ whether your function throws an error, when it should.
 :author:
     Lucas Sawade (lsawade@princeton.edu, 2019)
 
-:copyright:
-    Use it copy it and do whatever you like with it.
+:license:
+    GNU Lesser General Public License, Version 3
+    (http://www.gnu.org/copyleft/lgpl.html)
 
 """
 
@@ -22,7 +23,7 @@ from matpy.matrixmultiplication import MatrixMultiplication
 
 
 class TestMatMul(unittest.TestCase):
-    """"A sample test class to check if your modules' functions ar
+    """"A sample tests class to check if your modules' functions ar
     functioning."""
 
     def test_raise_shape_error(self):
@@ -66,7 +67,7 @@ class TestMatMul(unittest.TestCase):
 
 
 class TestDot(unittest.TestCase):
-    """"A sample test class to check if your modules' functions ar
+    """"A sample tests class to check if your modules' functions ar
     functioning."""
 
     def test_raise_shape_error(self):
@@ -110,7 +111,7 @@ class TestDot(unittest.TestCase):
 
 
 class TestMM(unittest.TestCase):
-    """"A sample test class to check if your modules' functions are
+    """"A sample tests class to check if your modules' functions are
     functioning."""
 
     def test_raise_method_error(self):

@@ -7,14 +7,20 @@ how to actually use classes.
 :author:
     Lucas Sawade (lsawade@princeton.edu, 2019)
 
-:copyright:
-    Use it copy it and do whatever you like with it.
+:license:
+    GNU Lesser General Public License, Version 3
+    (http://www.gnu.org/copyleft/lgpl.html)
 
 """
 
-from . import logger
 import numpy as np
 import sys
+import logging
+from .log_util import modify_logger
+
+# Setup Logger
+logger = logging.getLogger(__name__)
+modify_logger(logger)
 
 
 def matmul(a, b):
@@ -50,20 +56,21 @@ def matmul(a, b):
     can be set to control the printed output of a package.'''
 
     # Just for testing the loggers.
-    logger.debug("Test Debug")
-    logger.error("Test Error")
-    logger.critical("Test Critical")
+    logger.debug("Test Debug Level")
+    logger.error("Test Error Level")
+    logger.critical("Test Critical Level")
+    logger.verbose("Test Verbose Level")
 
     # Logging the matrices
-    logger.info("A:")
+    logger.verbose("A:")
     for row in a:
-        logger.info("    " + np.array_str(row, max_line_width=np.inf))
+        logger.verbose("    " + np.array_str(row, max_line_width=np.inf))
     if a.size > 4:
         logger.warning("Matrix size exceeds 4 elements.")
 
-    logger.info("B:")
+    logger.verbose("B:")
     for row in b:
-        logger.info("    " + np.array_str(row, max_line_width=np.inf))
+        logger.verbose("    " + np.array_str(row, max_line_width=np.inf))
 
     if b.size > 4:
         logger.warning("Matrix size exceeds 4 elements.")
@@ -74,7 +81,7 @@ def matmul(a, b):
 
 
 def dotprod(a, b):
-    """ Standard wrapper around numnpy's function.
+    """ Standard wrapper around numpy's function.
 
     :param a: matrix A
     :type a: numpy.ndarray

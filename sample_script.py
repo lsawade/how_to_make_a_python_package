@@ -8,7 +8,7 @@ import logging
 logger = logging.getLogger("matpy")
 
 
-# Set up test arrays
+# Set up tests arrays
 a = np.array([[1, 2],
               [3, 4]])
 b = np.array([[2, 3, 5],

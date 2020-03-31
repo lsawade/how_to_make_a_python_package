@@ -76,8 +76,8 @@ retrieving the logger and setting the level:
     logger.setLevel(logging.INFO)
 
 
-For this package, we put set the level to debug, so that all messages are
-printed.
+For this package, we put set the level to VERBOSE, so that all messages are
+printed. Except the
 
 Then, just as in :func:`matpy.matrixmultiplication.matmul`, the logger can
 print statements much like the normal print function.
@@ -97,5 +97,6 @@ So, now you are all set for logging! Feel free to modify the logging!
 
 
 
+## CustomLogger
 
 

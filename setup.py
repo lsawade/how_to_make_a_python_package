@@ -15,7 +15,6 @@ from setuptools.command.test import test as testcommand
 # README.md file and 2) it's easier to type in the README.md file than to put a raw
 # string in below ...
 
-
 # Function to read and output README into long decription
 def read(fname):
     """From Wenjie Lei 2019"""
@@ -24,7 +23,6 @@ def read(fname):
     except Exception as e:
         return "Can't open %s" % fname
 
-
 long_description = "%s" % read("README.md")
 
 
@@ -32,7 +30,7 @@ long_description = "%s" % read("README.md")
 # anywhere and "pytest" will look for all available tests in the current
 # directory and subdirectories recursively
 class PyTest(testcommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
+    user_options = [('pytest-args=', 'a', "Arguments to pass to py.tests")]
 
     def initialize_options(self):
         testcommand.initialize_options(self)
@@ -44,14 +42,12 @@ class PyTest(testcommand):
         errno = pytest.main(self.pytest_args)
         sys.exit(errno)
 
-
-# Note that we are not specifying the requirements here because it is easier
-# to specify them in the environment.yml
 setup(
     name="how_to_make_a_python_package",
     description="A primer on how to set up your python code",
     long_description=long_description,
-    version="0.0.1",
+    long_description_content_type="text/markdown",
+    version="0.0.2",
     author="Lucas Sawade",
     author_email="lsawade@princeton.edu",
     license='GNU Lesser General Public License, Version 3',
@@ -60,12 +56,18 @@ setup(
     packages=find_packages(),
     package_dir={"": "."},
     include_package_data=True,
+    install_requires=['numpy'],
     tests_require=['pytest'],
-    cmdclass={'test': PyTest},
+    cmdclass={'tests': PyTest},
     zip_safe=False,
     classifiers=[
-        "Development Status :: Alpha",
+        "Development Status :: 4 - Beta",
         "Topic :: Utilities",
-        "License :: GNU License",
-    ]
+        ("License :: OSI Approved "
+         ":: GNU General Public License v3 or later (GPLv3+)"),
+    ],
+    extras_require={
+        "docs": ["sphinx", "sphinx_rtd_theme"],
+        "tests": ["pytest", "py"]
+    }
 )

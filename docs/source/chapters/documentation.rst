@@ -60,7 +60,6 @@ shown below:
 
     extensions = ['sphinx.ext.autodoc',
                   'sphinx.ext.viewcode',
-                  'm2r'
     ...
     autoclass_content = 'both'
     ...
