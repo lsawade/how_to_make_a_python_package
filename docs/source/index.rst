@@ -17,6 +17,7 @@ The whole documentation is referring to the following Github repository:
    chapters/logging
    chapters/documentation
    chapters/API
+   chapters/pypi
 
 
 

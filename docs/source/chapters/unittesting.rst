@@ -12,11 +12,11 @@ Setting up your tests
 
 The first thing you need to do is to set up some tests. As you may have seen in
 :ref:`module-label`, ``matpy`` contains a subdirectory, which contains a
-testing file, specifically the test module
-:mod:`matpy.test.test_matmul_and_dot`:
+testing file, specifically the test file ``test_matmul_and_dot.py``:
 
-.. include:: ../../../matpy/test/test_matmul_and_dot.py
-    :code: python
+.. literalinclude:: ../../../tests/test_matmul_and_dot.py
+    :linenos:
+    :language: python
 
 When inspecting the file you will, see
 three different unittest classes -- for each function and one for the class.

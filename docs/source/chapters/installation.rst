@@ -14,8 +14,9 @@ the installation.
 In the ``setup.py`` file used for this project, there are two small things that
 make your life easier, but first of all let's look at it.
 
-.. include:: ../../../setup.py
-    :code: python
+.. literalinclude:: ../../../setup.py
+    :language: python
+    :linenos:
 
 First, there is a function to read the ``README.md`` which will then be
 printed into the long_description of the package.
@@ -55,8 +56,9 @@ so that you main Python installation stays untouched and cannot be broken.
 The general structure looks as follows:
 
 
-.. include:: ../../../environment.yml
-    :code: yaml
+.. literalinclude:: ../../../environment.yml
+    :language: yaml
+    :linenos:
 
 ``name`` specifies the name of the environment to be created, ``channels``
 the online locations from where to grab the dependencies when they are

@@ -38,7 +38,7 @@ distribute them using a package manager. The most popular is PyPi which you
 have probably come across already when you installed a package using ``pip
 install <some_package>``. I don't want to get too crazy with the instructions
 here because you can find most of the necessary details
-`here <https://packaging.python.org/tutorials/packaging-projects/>`_.
+`https://packaging.python.org/tutorials/packaging-projects/`_.
 
 I will however go through the basics as for example a step-wise breakdown.
 
@@ -49,7 +49,10 @@ Steps involved
 2. Create a README
 3. Create a LICENSE file and name it in ``setup.py``.
    Check out classifiers `here <https://pypi.org/classifiers/>`_.
-4.
+4. Generating the distribution files
+5. Create normal ``PyPi`` account and a test account.
+6. Upload project using the PyPi
+7. Check if you can install it using pip.
 
 Before the steps your package should have this structure:
 
@@ -121,6 +124,38 @@ install and distribute your package is known. Important features to note are
 
 The rest is probably self-explaining.
 
+Here, a setup file with all the bare necessities (Copied from
+`https://packaging.python.org/tutorials/packaging-projects/`_):
+
+.. code-block:: python
+    :linenos:
+
+    import setuptools
+
+    with open("README.md", "r") as fh:
+        long_description = fh.read()
+
+    setuptools.setup(
+        name="example-pkg-YOUR-USERNAME-HERE", # Replace with your own username
+        version="0.0.1",
+        author="Example Author",
+        author_email="author@example.com",
+        description="A small example package",
+        long_description=long_description,
+        long_description_content_type="text/markdown",
+        url="https://github.com/pypa/sampleproject",
+        packages=setuptools.find_packages(),
+        classifiers=[
+            "Programming Language :: Python :: 3",
+            "License :: OSI Approved :: MIT License",
+            "Operating System :: OS Independent",
+        ],
+        python_requires='>=3.6',
+    )
+
+The projects own ``setup.py`` is a bit longer and has more features.
+
+
 LICENSE
 _______
 
@@ -134,8 +169,111 @@ original author.
 ``README.md``
 _____________
 
-The ``README`` is essential for your project on GitHub either way, os I'm not
+The ``README`` is essential for your project on GitHub either way, so I'm not
 going to elaborate the need for it here.
 
 
+Generating the files to upload
+______________________________
 
+Since we have all the files in place, it's time to distribution files. These
+file are going to be upload to PyPi for anyone to download. To do that you'll
+need a couple of things. First, let's update the ``setuptools`` and
+``wheel``, which are used to create the ``build`` and ``dist`` files.
+
+.. code-block:: bash
+
+    python3 -m pip install --user --upgrade setuptools wheel
+
+
+After updating the packages, we are ready to create the ``dist`` and the
+``wheel``, which are needed for other people to install your package from
+``PyPi`` via ``pip``.
+
+.. code-block::
+
+    python3 setup.py sdist bdist_wheel
+
+This results in two new directories ``build`` and ``dist``, which you'll need
+both.
+
+Uploading the distribution archives [TEST]
+__________________________________________
+
+The last step is to actually upload your package to ``PyPi``. For that you'll
+need an account on `https://test.pypi.org/account/register/
+<https://test.pypi.org/account/register/>`_. This is the package registry for
+testing your upload etc. This is not meant for actual distribution.
+Follow the steps to create the API token and add it to the ``~/.pypirc`` in
+your home folder.
+
+.. code-block::
+
+    [pypi]
+        username = __token__
+        password = pypi-<s0me_v3ry_l0ng_l3773r_and_numb3r_c0mb1nat10n>
+
+If the file doesn't exist, create it. It allows you to safely upload data to
+``PyPi``. Before uploading your package, it's good to have a upload test space.
+I'll show in the next step what to do/change to actually distribute your
+package. Let's first do the test round.
+
+The next thing you'll need, is the package ``twine``.
+
+.. code-block:: bash
+
+    python3 -m pip install --user --upgrade twine
+
+``twine`` is the package that helps uploading your package ``dist`` and
+``build``. After updating, the ``twine`` package, you can upload your package
+using
+
+.. code-block:: bash
+
+    python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+You will be asked for username and password in the process.
+
+Installing the package
+______________________
+
+Now that it is uploaded you can try to install it using the command line and
+pip:
+
+.. code-block:: bash
+
+    pip install -i https://test.pypi.org/simple/ <your_package_name>
+
+Note that this line of code you can find on your project page on
+`test.pypi.org <test.pypi.org>`_.
+
+Final Upload!
+_____________
+
+When you are ready to distribute your package to ``PyPi``, make sure you
+create an account on the actual ``PyPi``. Here I'm just reiterating the
+points made on
+`https://packaging.python.org/tutorials/packaging-projects/ <https://packaging.python.org/tutorials/packaging-projects/>`_:
+
+    When you are ready to upload a real package to the Python Package Index
+    you can do much the same as you did in this tutorial, but with these
+    important differences:
+
+    - Choose a memorable and unique name for your package.
+      You don’t have to append your username as you did in the tutorial.
+    - Register an account on https://pypi.org - note that these are two
+      separate servers and the login details from the test server are not
+      shared with the main server.
+    - Use twine upload dist/* to upload your package and enter your
+      credentials for the account you registered on the real PyPI. Now that
+      you’re uploading the package in production, you don’t need to specify
+      --repository-url; the package will upload to https://pypi.org/ by default.
+    - Install your package from the real PyPI using pip install [your-package].
+
+    At this point if you want to read more on packaging Python libraries
+    here are some things you can do:
+
+    - Read more about using setuptools to package libraries in Packaging and
+      distributing projects.
+    - Read about Packaging binary extensions.
+    - Consider alternatives to setuptools such as flit, hatch, and poetry.

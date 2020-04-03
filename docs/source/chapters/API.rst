@@ -23,6 +23,6 @@ Testing
 Matrix Multiplication
 =====================
 
-.. automodule:: matpy.test.test_matmul_and_dot
+.. automodule:: tests.test_matmul_and_dot
     :members:
     :show-inheritance:

@@ -85,8 +85,9 @@ contents tree), which allows us to include files so that not the complete
 documentation has to be written in one file. A standard file (the one of this
 documentation) looks as follows:
 
-.. include:: ../index.rst
-    :code: rst
+.. literalinclude:: ../index.rst
+    :language: rst
+    :linenos:
 
 This way, we can write a very user-friendly structured documentation.
 
@@ -101,8 +102,9 @@ usual way of doing this is to have a function library at the end of your
 documentation. Here, it is also the last section: :ref:`api-label`. The
 source file is very simple:
 
-.. include:: API.rst
-    :code: rst
+.. literalinclude:: API.rst
+    :language: rst
+    :linenos:
 
 As you can see, we have exactly one ``.. automodule::`` per python module
 (file). The cool thing about this is that we don't have to
@@ -139,8 +141,9 @@ tricks your documentation is online. The key ingredient to make that happen
 is the ``.readthedocs.yml`` file. This file tells the server what is
 necessary to build your documentation and how to build it. Let's take a look.
 
-.. include:: ../../../.readthedocs.yml
-    :code: yaml
+.. literalinclude:: ../../../.readthedocs.yml
+    :language: yaml
+    :linenos:
 
 There are a few important steps here. The first entry in this file that needs
 to be manually set is the ``sphinx`` keyword. The location of the conf.py

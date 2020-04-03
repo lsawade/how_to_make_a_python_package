@@ -37,15 +37,16 @@ def addLoggingLevel(levelName, levelNum, methodName=None):
     raise an `AttributeError` if the level name is already an attribute of the
     `logging` module or if the method name is already present
 
-    Example
-    -------
-    >>> addLoggingLevel('TRACE', logging.DEBUG - 5)
-    >>> logging.getLogger(__name__).setLevel("TRACE")
-    >>> logging.getLogger(__name__).trace('that worked')
-    >>> logging.trace('so did this')
-    >>> logging.TRACE
-    5
+    .. rubric:: Example
 
+    .. code-block::
+
+        addLoggingLevel('TRACE', logging.DEBUG - 5)
+        logging.getLogger(__name__).setLevel("TRACE")
+        logging.getLogger(__name__).trace('that worked')
+        logging.trace('so did this')
+        logging.TRACE
+        5
 
     Taken from StackOverflow because the code was beautifully simple.
     Author: Mad Physicist (Mar 4, 2016)
@@ -106,25 +107,29 @@ class CustomLogger(getLoggerClass()):
         addLoggingLevel("VERBOSE", VERBOSE)
 
 
-
-
 class CustomFormatter(logging.Formatter):
     """
     Logging Formatter to add colors and count warning / errors
 
     This class organizes the customization of the logging output.
-    The formatter as of now outputs the logs in the follwoing manner in
+    The formatter as of now outputs the logs in the following manner in
     order of Loglevel:
+
+    .. rubric:: Example Output
 
     .. code-block:: python
 
-        [2020-03-30 21:00:17] - matpy - [DEBUG]  Test Verbose Level (matrixmultiplication.py:53)
-        [2020-03-30 21:00:17] - matpy - [VERBOSE]  Test Verbose Level
-        [2020-03-30 21:00:17] - matpy - [INFO]  Initializing matrices...
-        [2020-03-30 21:00:17] - matpy - [WARNING]  Matrix size exceeds 4 elements.
-        [2020-03-30 21:00:17] - matpy - [ERROR]  Test Error Level (matrixmultiplication.py:54)
-        [2020-03-30 21:00:17] - matpy - [CRITICAL]  Test Critical Level (matrixmultiplication.py:55)
-
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication ----- [INFO]: Initializing matrices...
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication ---- [ERROR]: Test Error Level (matrixmultiplication.py:60)
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication - [CRITICAL]: Test Critical Level (matrixmultiplication.py:61)
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]: Test Verbose Level
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]: A:
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [1 2]
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [3 4]
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]: B:
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [2 3 5]
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [4 5 6]
+        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [WARNING]: Matrix size exceeds 4 elements.
 
     These outputs are colored in the actual output but the formatting is just
     as shown above. VERBOSE is an extra added LogLevel formatting. More can be
@@ -199,6 +204,8 @@ class CustomFormatter(logging.Formatter):
 
 
 def modify_logger(logger):
+
+    # Make sure only this module prints the logger information.
     logger.propagate = 0
 
     # Add formatter

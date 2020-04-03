@@ -43,8 +43,8 @@ class PyTest(testcommand):
         sys.exit(errno)
 
 setup(
-    name="how_to_make_a_python_package",
-    description="A primer on how to set up your python code",
+    name="htmapp",
+    description="How to make a Python package.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     version="0.0.2",
