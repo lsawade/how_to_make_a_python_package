@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 This is a small script that shows how to simply create a tests class. The
 reason why a tests class is the superior choice over a function is that it can

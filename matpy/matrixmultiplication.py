@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 modify_logger(logger)
 
 
-def matmul(a, b):
+def matmul(a: np.array, b: np.array):
     """ Standard wrapper around numnpy's function.
 
     :param a: matrix A
@@ -80,7 +80,7 @@ def matmul(a, b):
     return c
 
 
-def dotprod(a, b):
+def dotprod(a: np.array, b: np.array):
     """ Standard wrapper around numpy's function.
 
     :param a: matrix A
@@ -89,15 +89,17 @@ def dotprod(a, b):
     :type b: numpy.ndarray
     :return: multiplied matrix
 
-     Usage:
+    Usage:
         Assume that a and b are 2D numpy arrays that match in size for
         multiplication.
 
-        .. code-block:: python
+    .. rubric:: Example
 
-            >>> from matpy.matrixmultiplication import dotprod
-            >>> c = dotprod(a, b)
-            >>> print(c)
+    .. code-block:: python
+
+        from matpy.matrixmultiplication import dotprod
+        c = dotprod(a, b)
+        print(c)
 
     """
 

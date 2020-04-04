@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 """
 
 This module includes a custom logger to make it easier to identify errors and

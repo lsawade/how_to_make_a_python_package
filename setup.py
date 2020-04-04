@@ -69,5 +69,6 @@ setup(
     extras_require={
         "docs": ["sphinx", "sphinx_rtd_theme"],
         "tests": ["pytest", "py"]
-    }
+    },
+    scripts=['bins/sample_bin']
 )
