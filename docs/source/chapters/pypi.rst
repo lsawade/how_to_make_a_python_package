@@ -56,7 +56,7 @@ Steps involved
 
 Before the steps your package should have this structure:
 
-.. code-block::
+.. code-block:: bash
 
     how_to_make_a_python_package/
       |__ tests/
@@ -71,7 +71,7 @@ Before the steps your package should have this structure:
 
 and after following the steps 2 additional directories should appear:
 
-.. code-block::
+.. code-block:: bash
 
     how_to_make_a_python_package/
       |__ build/
@@ -190,7 +190,7 @@ After updating the packages, we are ready to create the ``dist`` and the
 ``wheel``, which are needed for other people to install your package from
 ``PyPi`` via ``pip``.
 
-.. code-block::
+.. code-block:: bash
 
     python3 setup.py sdist bdist_wheel
 
@@ -207,7 +207,7 @@ testing your upload etc. This is not meant for actual distribution.
 Follow the steps to create the API token and add it to the ``~/.pypirc`` in
 your home folder.
 
-.. code-block::
+.. code-block:: bash
 
     [pypi]
         username = __token__

@@ -23,7 +23,7 @@ introduce the example module.
 
 ``matpy`` is simply a two function, one class package with one module.
 
-.. code-block::
+.. code-block:: bash
 
         matpy
           |____matrixmultiplication.py
@@ -39,7 +39,7 @@ is just a wrapper around :func:`numpy.dot`. The third component is the
 
 To test the function a separate folder is created containing all the tests.
 
-.. code-block::
+.. code-block:: bash
 
         tests
           |______init__.py
