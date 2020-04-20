@@ -85,7 +85,7 @@ contents tree), which allows us to include files so that not the complete
 documentation has to be written in one file. A standard file (the one of this
 documentation) looks as follows:
 
-.. literalinclude:: ../index.rst
+.. literalinclude:: ../contents.rst
     :language: rst
     :linenos:
 
