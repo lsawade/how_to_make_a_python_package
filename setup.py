@@ -70,5 +70,9 @@ setup(
         "docs": ["sphinx", "sphinx_rtd_theme"],
         "tests": ["pytest", "py"]
     },
-    scripts=['bins/sample_bin']
+    entry_points={
+        'console_scripts': [
+            'sample-bin = matpy.bins.sample_bin:main'
+        ]
+    }
 )
