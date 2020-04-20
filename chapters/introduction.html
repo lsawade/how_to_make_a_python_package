@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introduction &mdash; How to make a python package 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.0.1',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="How to make a python package" href="../contents.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> How to make a python package
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-module">The module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#goal">Goal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unittesting.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html"><code class="docutils literal notranslate"><span class="pre">matpy</span></code> API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pypi.html">Distributing your package</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">How to make a python package</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../contents.html">Docs</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapters/introduction.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This tutorial/repository was created due to a lack of helpful resources that
+bring you from writing your two cool functions to actual making them
+available to people. So, in the following few pages, you can follow some
+instructions, tips, and tricks on how to create your own package that others
+can easily install on their machine.</p>
+<p><strong>Disclaimer</strong>: This package is meant to be a you can find everything here,
+but don’t necessarily need everything packages. It is supposed to be an example.
+E.g. the logging part. It is convenient, but most people will never use it in
+their lives because it is unnecessary. But for the ones that want to use it
+this is going to be a place to look up on how to customize the logger.</p>
+<div class="section" id="the-module">
+<span id="module-label"></span><h2>The module<a class="headerlink" href="#the-module" title="Permalink to this headline">¶</a></h2>
+<p>Before we begin with the stuff you want to learn about, I will briefly
+introduce the example module.</p>
+<p><code class="docutils literal notranslate"><span class="pre">matpy</span></code> is simply a two function, one class package with one module.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>matpy
+  <span class="p">|</span>____matrixmultiplication.py
+  <span class="p">|</span>______init__.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">matpy</span></code> contains one module called <code class="docutils literal notranslate"><span class="pre">matrixmultiplication.py</span></code>. In the module
+there are two functions and one class.
+<a class="reference internal" href="API.html#matpy.matrixmultiplication.matmul" title="matpy.matrixmultiplication.matmul"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.matrixmultiplication.matmul()</span></code></a>
+is just a wrapper around <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.matmul()</span></code>, and
+<a class="reference internal" href="API.html#matpy.matrixmultiplication.dotprod" title="matpy.matrixmultiplication.dotprod"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.matrixmultiplication.dotprod()</span></code></a>
+is just a wrapper around <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.dot()</span></code>. The third component is the
+<code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.MatrixMultiplication</span></code>, which uses the two functions as methods.</p>
+<p>To test the function a separate folder is created containing all the tests.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tests
+  <span class="p">|</span>______init__.py
+  <span class="p">|</span>____test_matmul_and_dot.py
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">test_matmul_and_dot.py</span></code> is located inside this folder which is the where
+the unittests are located. This folder can be used for developement purposes.
+The reason for not including the tests inside the module is to lighten the
+download of the package.</p>
+</div>
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>The goal of this documentation is to make the package reproducible, create a
+fully automated testing environment for the package, as well as good-looking
+documentation.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../contents.html" class="btn btn-neutral float-left" title="How to make a python package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Lucas Sawade
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

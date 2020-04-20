@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Distributing your package &mdash; How to make a python package 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'../',
+              VERSION:'0.0.1',
+              LANGUAGE:'None',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="matpy API" href="API.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../contents.html" class="icon icon-home"> How to make a python package
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unittesting.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html"><code class="docutils literal notranslate"><span class="pre">matpy</span></code> API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Distributing your package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installing-your-package-using-the-source-code">Installing your package using the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distributing-you-code-using-pypi">Distributing you code using PyPi</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#steps-involved">Steps involved</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setup-py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#license">LICENSE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#readme-md"><code class="docutils literal notranslate"><span class="pre">README.md</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-the-files-to-upload">Generating the files to upload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uploading-the-distribution-archives-test">Uploading the distribution archives [TEST]</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installing-the-package">Installing the package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#final-upload">Final Upload!</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../contents.html">How to make a python package</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../contents.html">Docs</a> &raquo;</li>
+        
+      <li>Distributing your package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/chapters/pypi.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="distributing-your-package">
+<h1>Distributing your package<a class="headerlink" href="#distributing-your-package" title="Permalink to this headline">¶</a></h1>
+<p>There are many ways of install a python packaging. The simplest maybe just
+copying the repository, <cite>cd</cite>-ing into the directory, and then just running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e .
+</pre></div>
+</div>
+<p>provided a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file. This approach, however, would make it extremely
+hard and uncontrollable to integrate your package into other projects. In
+this chapter, a few approaches are shown on how to make your packages easily
+accessible to others through the PyPi package manager.</p>
+<div class="section" id="installing-your-package-using-the-source-code">
+<h2>Installing your package using the source code<a class="headerlink" href="#installing-your-package-using-the-source-code" title="Permalink to this headline">¶</a></h2>
+<p>Just like in the first paragraph the simplest way of installing your package
+without going through the hassle of distribution is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/lsawade/how_to_make_a_python_package
+<span class="nb">cd</span> how_to_make_a_python_package
+pip install -e .
+</pre></div>
+</div>
+<p>This approach is simple and useful as long as you are the only one using the
+code. As soon as other people are starting to use it, this approach maybe too
+simple.</p>
+</div>
+<div class="section" id="distributing-you-code-using-pypi">
+<h2>Distributing you code using PyPi<a class="headerlink" href="#distributing-you-code-using-pypi" title="Permalink to this headline">¶</a></h2>
+<p>When you want more people to use your packages it becomes crucial to
+distribute them using a package manager. The most popular is PyPi which you
+have probably come across already when you installed a package using <code class="docutils literal notranslate"><span class="pre">pip</span>
+<span class="pre">install</span> <span class="pre">&lt;some_package&gt;</span></code>. I don’t want to get too crazy with the instructions
+here because you can find most of the necessary details
+<a class="reference external" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a>.</p>
+<p>I will however go through the basics as for example a step-wise breakdown.</p>
+<div class="section" id="steps-involved">
+<h3>Steps involved<a class="headerlink" href="#steps-involved" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Create a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code></li>
+<li>Create a README</li>
+<li>Create a LICENSE file and name it in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.
+Check out classifiers <a class="reference external" href="https://pypi.org/classifiers/">here</a>.</li>
+<li>Generating the distribution files</li>
+<li>Create normal <code class="docutils literal notranslate"><span class="pre">PyPi</span></code> account and a test account.</li>
+<li>Upload project using the PyPi</li>
+<li>Check if you can install it using pip.</li>
+</ol>
+<p>Before the steps your package should have this structure:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>how_to_make_a_python_package/
+  <span class="p">|</span>__ tests/
+  <span class="p">|</span>__ matpy/
+  <span class="p">|</span>    <span class="p">|</span>__ __init__.py
+  <span class="p">|</span>    <span class="p">|</span>__ matrixmultiplication.py
+  <span class="p">|</span>__ tests/
+  <span class="p">|</span>    <span class="p">|</span>____test_matmul_and_dot.py
+  <span class="p">|</span>__ setup.py
+  <span class="p">|</span>__ LICENSE
+  <span class="p">|</span>__ README.md
+</pre></div>
+</div>
+<p>and after following the steps 2 additional directories should appear:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>how_to_make_a_python_package/
+  <span class="p">|</span>__ build/
+  <span class="p">|</span>    <span class="p">|</span>__bdist.macosx-10.9-x86_64
+  <span class="p">|</span>    <span class="p">|</span>__lib
+  <span class="p">|</span>__ dist/
+  <span class="p">|</span>    <span class="p">|</span>__ how_to_make_a_python_package-0.0.2.tar.gz
+  <span class="p">|</span>    <span class="p">|</span>__ how_to_make_a_python_package-0.0.2-py3-none-any.whl
+  <span class="p">|</span>__ tests/
+  <span class="p">|</span>__ matpy/
+  <span class="p">|</span>    <span class="p">|</span>__ __init__.py
+  <span class="p">|</span>    <span class="p">|</span>__ matrixmultiplication.py
+  <span class="p">|</span>__ tests/
+  <span class="p">|</span>    <span class="p">|</span>____test_matmul_and_dot.py
+  <span class="p">|</span>__ setup.py
+  <span class="p">|</span>__ LICENSE
+  <span class="p">|</span>__ README.md
+</pre></div>
+</div>
+<p>The build and dist are created to make it possible for other users to
+download the package onto their system.</p>
+<div class="section" id="setup-py">
+<h4><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> (<a class="reference internal" href="installation.html#setup-py"><span class="std std-ref">setup.py</span></a>) makes sure that all the necessary info to
+install and distribute your package is known. Important features to note are</p>
+<ul>
+<li><p class="first">If you choose to load the long description from a text file that is not an
+<code class="docutils literal notranslate"><span class="pre">.rst</span></code> file, you need to specify the file type using the keyword argument</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">long_description_content_type</span><span class="o">=</span><span class="s2">&quot;text/markdown&quot;</span>
+</pre></div>
+</div>
+<p>if the file type is MarkDown for example.</p>
+</li>
+<li><p class="first">Specify all the requirements for the installation in the keyword argument</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;numpy&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;other_package&gt;&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>in form of a list. If you don’t and the package is installed into an
+environment that does not have the requirements installed, the module will
+error, of course. Hence, it is convenient to mention
+requirements here.</p>
+</li>
+<li><p class="first">The classifiers have to have a certain format. If they aren’t, the upload
+will fail. Check out classifiers <a class="reference external" href="https://pypi.org/classifiers/">here</a>.</p>
+</li>
+</ul>
+<p>The rest is probably self-explaining.</p>
+<p>Here, a setup file with all the bare necessities (Copied from
+<a class="reference external" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a>):</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">setuptools</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;README.md&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+    <span class="n">long_description</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;example-pkg-YOUR-USERNAME-HERE&quot;</span><span class="p">,</span> <span class="c1"># Replace with your own username</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.0.1&quot;</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Example Author&quot;</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;author@example.com&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A small example package&quot;</span><span class="p">,</span>
+    <span class="n">long_description</span><span class="o">=</span><span class="n">long_description</span><span class="p">,</span>
+    <span class="n">long_description_content_type</span><span class="o">=</span><span class="s2">&quot;text/markdown&quot;</span><span class="p">,</span>
+    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://github.com/pypa/sampleproject&quot;</span><span class="p">,</span>
+    <span class="n">packages</span><span class="o">=</span><span class="n">setuptools</span><span class="o">.</span><span class="n">find_packages</span><span class="p">(),</span>
+    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Programming Language :: Python :: 3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;License :: OSI Approved :: MIT License&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Operating System :: OS Independent&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">python_requires</span><span class="o">=</span><span class="s1">&#39;&gt;=3.6&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>The projects own <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> is a bit longer and has more features.</p>
+</div>
+<div class="section" id="license">
+<h4>LICENSE<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h4>
+<p>The license is important since PyPi won’t be allowed to share your package if
+it doesn’t have a license. A good practice if you want your project to be
+completely open is to just distribute it under an open GNU license. This let’s
+anyone use, change and then redistribute the code, but recognizes you as the
+original author.</p>
+</div>
+<div class="section" id="readme-md">
+<h4><code class="docutils literal notranslate"><span class="pre">README.md</span></code><a class="headerlink" href="#readme-md" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">README</span></code> is essential for your project on GitHub either way, so I’m not
+going to elaborate the need for it here.</p>
+</div>
+<div class="section" id="generating-the-files-to-upload">
+<h4>Generating the files to upload<a class="headerlink" href="#generating-the-files-to-upload" title="Permalink to this headline">¶</a></h4>
+<p>Since we have all the files in place, it’s time to distribution files. These
+file are going to be upload to PyPi for anyone to download. To do that you’ll
+need a couple of things. First, let’s update the <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> and
+<code class="docutils literal notranslate"><span class="pre">wheel</span></code>, which are used to create the <code class="docutils literal notranslate"><span class="pre">build</span></code> and <code class="docutils literal notranslate"><span class="pre">dist</span></code> files.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install --user --upgrade setuptools wheel
+</pre></div>
+</div>
+<p>After updating the packages, we are ready to create the <code class="docutils literal notranslate"><span class="pre">dist</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">wheel</span></code>, which are needed for other people to install your package from
+<code class="docutils literal notranslate"><span class="pre">PyPi</span></code> via <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 setup.py sdist bdist_wheel
+</pre></div>
+</div>
+<p>This results in two new directories <code class="docutils literal notranslate"><span class="pre">build</span></code> and <code class="docutils literal notranslate"><span class="pre">dist</span></code>, which you’ll need
+both.</p>
+</div>
+<div class="section" id="uploading-the-distribution-archives-test">
+<h4>Uploading the distribution archives [TEST]<a class="headerlink" href="#uploading-the-distribution-archives-test" title="Permalink to this headline">¶</a></h4>
+<p>The last step is to actually upload your package to <code class="docutils literal notranslate"><span class="pre">PyPi</span></code>. For that you’ll
+need an account on <a class="reference external" href="https://test.pypi.org/account/register/">https://test.pypi.org/account/register/</a>. This is the package registry for
+testing your upload etc. This is not meant for actual distribution.
+Follow the steps to create the API token and add it to the <code class="docutils literal notranslate"><span class="pre">~/.pypirc</span></code> in
+your home folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>pypi<span class="o">]</span>
+    <span class="nv">username</span> <span class="o">=</span> __token__
+    <span class="nv">password</span> <span class="o">=</span> pypi-&lt;s0me_v3ry_l0ng_l3773r_and_numb3r_c0mb1nat10n&gt;
+</pre></div>
+</div>
+<p>If the file doesn’t exist, create it. It allows you to safely upload data to
+<code class="docutils literal notranslate"><span class="pre">PyPi</span></code>. Before uploading your package, it’s good to have a upload test space.
+I’ll show in the next step what to do/change to actually distribute your
+package. Let’s first do the test round.</p>
+<p>The next thing you’ll need, is the package <code class="docutils literal notranslate"><span class="pre">twine</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m pip install --user --upgrade twine
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">twine</span></code> is the package that helps uploading your package <code class="docutils literal notranslate"><span class="pre">dist</span></code> and
+<code class="docutils literal notranslate"><span class="pre">build</span></code>. After updating, the <code class="docutils literal notranslate"><span class="pre">twine</span></code> package, you can upload your package
+using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+</pre></div>
+</div>
+<p>You will be asked for username and password in the process.</p>
+</div>
+<div class="section" id="installing-the-package">
+<h4>Installing the package<a class="headerlink" href="#installing-the-package" title="Permalink to this headline">¶</a></h4>
+<p>Now that it is uploaded you can try to install it using the command line and
+pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -i https://test.pypi.org/simple/ &lt;your_package_name&gt;
+</pre></div>
+</div>
+<p>Note that this line of code you can find on your project page on
+<a class="reference external" href="test.pypi.org">test.pypi.org</a>.</p>
+</div>
+<div class="section" id="final-upload">
+<h4>Final Upload!<a class="headerlink" href="#final-upload" title="Permalink to this headline">¶</a></h4>
+<p>When you are ready to distribute your package to <code class="docutils literal notranslate"><span class="pre">PyPi</span></code>, make sure you
+create an account on the actual <code class="docutils literal notranslate"><span class="pre">PyPi</span></code>. Here I’m just reiterating the
+points made on
+<a class="reference external" href="https://packaging.python.org/tutorials/packaging-projects/">https://packaging.python.org/tutorials/packaging-projects/</a>:</p>
+<blockquote>
+<div><p>When you are ready to upload a real package to the Python Package Index
+you can do much the same as you did in this tutorial, but with these
+important differences:</p>
+<ul class="simple">
+<li>Choose a memorable and unique name for your package.
+You don’t have to append your username as you did in the tutorial.</li>
+<li>Register an account on <a class="reference external" href="https://pypi.org">https://pypi.org</a> - note that these are two
+separate servers and the login details from the test server are not
+shared with the main server.</li>
+<li>Use twine upload dist/* to upload your package and enter your
+credentials for the account you registered on the real PyPI. Now that
+you’re uploading the package in production, you don’t need to specify
+–repository-url; the package will upload to <a class="reference external" href="https://pypi.org/">https://pypi.org/</a> by default.</li>
+<li>Install your package from the real PyPI using pip install [your-package].</li>
+</ul>
+<p>At this point if you want to read more on packaging Python libraries
+here are some things you can do:</p>
+<ul class="simple">
+<li>Read more about using setuptools to package libraries in Packaging and
+distributing projects.</li>
+<li>Read about Packaging binary extensions.</li>
+<li>Consider alternatives to setuptools such as flit, hatch, and poetry.</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="API.html" class="btn btn-neutral float-left" title="matpy API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Lucas Sawade
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
