@@ -41,7 +41,7 @@ def addLoggingLevel(levelName, levelNum, methodName=None):
 
     .. rubric:: Example
 
-    .. code-block::
+    .. code-block:: python
 
         addLoggingLevel('TRACE', logging.DEBUG - 5)
         logging.getLogger(__name__).setLevel("TRACE")
