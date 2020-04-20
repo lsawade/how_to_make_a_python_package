@@ -67,7 +67,7 @@ running the installation. For example, in the directory ``bins`` (binaries,
 which are not technically binaries in this case, but used in the same way as
 traditional binary files), there is the executable sample-bin:
 
-.. literalinclude:: ../../../bins/sample_bin
+.. literalinclude:: ../../../matpy/bins/sample_bin.py
     :language: python
     :linenos:
 
