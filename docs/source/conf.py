@@ -53,7 +53,7 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 # html_theme = 'sphinx_rtd_theme'
-from crate.theme.rtd.conf.foo import *
+from crate.theme.rtd.conf.crate_howtos import *
 html_theme = 'crate'
 
 # Add any paths that contain custom static files (such as style sheets) here,
