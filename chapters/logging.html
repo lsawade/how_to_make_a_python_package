@@ -20,20 +20,11 @@
   <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'0.0.1',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -59,7 +50,7 @@
           
 
           
-            <a href="../contents.html" class="icon icon-home"> How to make a python package
+            <a href="../index.html" class="icon icon-home"> How to make a python package
           
 
           
@@ -115,7 +106,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../contents.html">How to make a python package</a>
+          <a href="../index.html">How to make a python package</a>
         
       </nav>
 
@@ -144,7 +135,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../contents.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
       <li>Logging</li>
     
@@ -264,12 +255,12 @@ Python’s built-in <code class="xref py py-mod docutils literal notranslate"><s
 </td></tr></table></div>
 <p>The outline is as follows:</p>
 <ol class="arabic simple">
-<li>Retrieve the module’s logger</li>
-<li>Use how it outputs stuff using the <code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.log_util.modify_logger()</span></code></li>
-<li>Set logging level</li>
+<li><p>Retrieve the module’s logger</p></li>
+<li><p>Use how it outputs stuff using the <code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.log_util.modify_logger()</span></code></p></li>
+<li><p>Set logging level</p></li>
 </ol>
 <p>All necessary code for modifying the logging is located in the
-<a class="reference internal" href="API.html#module-matpy.log_util" title="matpy.log_util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">matpy.log_util</span></code></a>. The code is shown below and not all too complicated,
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">matpy.log_util</span></code>. The code is shown below and not all too complicated,
 but it is ‘long’. Do not get intimidated and continue below!</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
@@ -709,43 +700,43 @@ but it is ‘long’. Do not get intimidated and continue below!</p>
 </pre></div>
 </td></tr></table></div>
 <p>There are 3-4 important things here. The first one is the
-<a class="reference internal" href="API.html#matpy.log_util.CustomLogger" title="matpy.log_util.CustomLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomLogger</span></code></a>. The <a class="reference internal" href="API.html#matpy.log_util.CustomLogger" title="matpy.log_util.CustomLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomLogger</span></code></a>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomLogger</span></code>. The <code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomLogger</span></code>
 simply takes <code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code> and adds another Logging (see below) level
-by using the function <a class="reference internal" href="API.html#matpy.log_util.addLoggingLevel" title="matpy.log_util.addLoggingLevel"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.log_util.addLoggingLevel()</span></code></a>. That’s all the
+by using the function <code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.log_util.addLoggingLevel()</span></code>. That’s all the
 functions are doing. Of course there are some details in
-<a class="reference internal" href="API.html#matpy.log_util.addLoggingLevel" title="matpy.log_util.addLoggingLevel"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.log_util.addLoggingLevel()</span></code></a>, but those are simply there to handle
-the adding if the <a class="reference internal" href="API.html#matpy.log_util.CustomLogger" title="matpy.log_util.CustomLogger"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomLogger</span></code></a> is called multiple times
+<code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.log_util.addLoggingLevel()</span></code>, but those are simply there to handle
+the adding if the <code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomLogger</span></code> is called multiple times
 so that the Logging level is not overwritten.
 The most important part (why I started writing the logging docs) is the
-<a class="reference internal" href="API.html#matpy.log_util.CustomFormatter" title="matpy.log_util.CustomFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code></a>.
-The <a class="reference internal" href="API.html#matpy.log_util.CustomFormatter" title="matpy.log_util.CustomFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code></a> is a basic class containing some
+<code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code>.
+The <code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code> is a basic class containing some
 info that specifies the nature of the logged print statements, i.e., colors and
 whether a certain statement should be print depending on the logging levels etc.
 It’s basic string formatting that depends on the level of the statements.</p>
 <p>There are a number 6 different logging levels:</p>
 <ul class="simple">
-<li><ol class="first arabic" start="0">
-<li>Not-set</li>
+<li><ol class="arabic simple" start="0">
+<li><p>Not-set</p></li>
 </ol>
 </li>
-<li><ol class="first arabic" start="10">
-<li>Debug</li>
+<li><ol class="arabic simple" start="10">
+<li><p>Debug</p></li>
 </ol>
 </li>
-<li><ol class="first arabic" start="20">
-<li>Info</li>
+<li><ol class="arabic simple" start="20">
+<li><p>Info</p></li>
 </ol>
 </li>
-<li><ol class="first arabic" start="30">
-<li>Warning</li>
+<li><ol class="arabic simple" start="30">
+<li><p>Warning</p></li>
 </ol>
 </li>
-<li><ol class="first arabic" start="40">
-<li>Error</li>
+<li><ol class="arabic simple" start="40">
+<li><p>Error</p></li>
 </ol>
 </li>
-<li><ol class="first arabic" start="50">
-<li>Critical</li>
+<li><ol class="arabic simple" start="50">
+<li><p>Critical</p></li>
 </ol>
 </li>
 </ul>
@@ -783,7 +774,7 @@ printed. Except the <cite>DEBUG</cite> message. An example output:</p>
 <span class="p">[</span><span class="mi">2020</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">03</span> <span class="mi">14</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">18</span><span class="p">]</span> <span class="o">--</span> <span class="n">matpy</span><span class="o">.</span><span class="n">matrixmultiplication</span> <span class="o">--</span> <span class="p">[</span><span class="n">WARNING</span><span class="p">]:</span> <span class="n">Matrix</span> <span class="n">size</span> <span class="n">exceeds</span> <span class="mi">4</span> <span class="n">elements</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>Then, just as in <a class="reference internal" href="API.html#matpy.matrixmultiplication.matmul" title="matpy.matrixmultiplication.matmul"><code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.matrixmultiplication.matmul()</span></code></a>, the logger can
+<p>Then, just as in <code class="xref py py-func docutils literal notranslate"><span class="pre">matpy.matrixmultiplication.matmul()</span></code>, the logger can
 print statements much like the normal print function.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Setup Logger at the top of your module</span>
 <span class="kn">import</span> <span class="nn">logging</span>
@@ -800,7 +791,7 @@ print statements much like the normal print function.</p>
 </pre></div>
 </div>
 <p>The last important this is modify logger. I wish it wasn’t so but it also has
-to be run to apply the <a class="reference internal" href="API.html#matpy.log_util.CustomFormatter" title="matpy.log_util.CustomFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code></a> because the
+to be run to apply the <code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code> because the
 intrinsic logging facility has its one format. Just to explain it see the
 code below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">modify_logger</span><span class="p">(</span><span class="n">logger</span><span class="p">):</span>
@@ -820,8 +811,8 @@ code below.</p>
 to a parent module, so that this is the only module to print the messages. The
 <code class="xref py py-class docutils literal notranslate"><span class="pre">loggingStreamHandler</span></code> handles how stuff is output, in our case we
 want it to be output in a specific format, so we set our
-<a class="reference internal" href="API.html#matpy.log_util.CustomFormatter" title="matpy.log_util.CustomFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code></a>. The formatter is optional but
-convenient. instead of the <a class="reference internal" href="API.html#matpy.log_util.CustomFormatter" title="matpy.log_util.CustomFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code></a>, a “simple”</p>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code>. The formatter is optional but
+convenient. instead of the <code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.log_util.CustomFormatter</span></code>, a “simple”</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Customformatter</span>
 <span class="n">FORMAT</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(name)s</span><span class="s2"> - </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
 <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">FORMAT</span><span class="p">)</span>

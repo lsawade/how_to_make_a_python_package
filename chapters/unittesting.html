@@ -20,20 +20,11 @@
   <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'0.0.1',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -59,7 +50,7 @@
           
 
           
-            <a href="../contents.html" class="icon icon-home"> How to make a python package
+            <a href="../index.html" class="icon icon-home"> How to make a python package
           
 
           
@@ -116,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../contents.html">How to make a python package</a>
+          <a href="../index.html">How to make a python package</a>
         
       </nav>
 
@@ -145,7 +136,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../contents.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
       <li>Unit Testing</li>
     
@@ -501,18 +492,18 @@ and start running a test. This will start after every commit pull request etc.</
 however introduces a sequence of bash commands that are executed.
 Let’s go through this thing line by line.</p>
 <ol class="arabic simple">
-<li>Gets the anaconda installation file from the server.</li>
-<li>Starts installation</li>
-<li>Add miniconda path to PATH</li>
-<li>hash -r (idk)</li>
-<li>In installation always say yes and turn off command line environment
-indicator</li>
-<li>Add package channels</li>
-<li>Update conda</li>
-<li>conda info -a</li>
-<li>Create environment from environment file</li>
-<li>Activate environment</li>
-<li>Install package</li>
+<li><p>Gets the anaconda installation file from the server.</p></li>
+<li><p>Starts installation</p></li>
+<li><p>Add miniconda path to PATH</p></li>
+<li><p>hash -r (idk)</p></li>
+<li><p>In installation always say yes and turn off command line environment
+indicator</p></li>
+<li><p>Add package channels</p></li>
+<li><p>Update conda</p></li>
+<li><p>conda info -a</p></li>
+<li><p>Create environment from environment file</p></li>
+<li><p>Activate environment</p></li>
+<li><p>Install package</p></li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">script</span></code> is the test script to be executed. If everything is executed
 without errors, the continuous integration test will show up as passed.</p>

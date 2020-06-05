@@ -20,20 +20,11 @@
   <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
-      <script type="text/javascript">
-          var DOCUMENTATION_OPTIONS = {
-              URL_ROOT:'../',
-              VERSION:'0.0.1',
-              LANGUAGE:'None',
-              COLLAPSE_INDEX:false,
-              FILE_SUFFIX:'.html',
-              HAS_SOURCE:  true,
-              SOURCELINK_SUFFIX: '.txt'
-          };
-      </script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -58,7 +49,7 @@
           
 
           
-            <a href="../contents.html" class="icon icon-home"> How to make a python package
+            <a href="../index.html" class="icon icon-home"> How to make a python package
           
 
           
@@ -127,7 +118,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../contents.html">How to make a python package</a>
+          <a href="../index.html">How to make a python package</a>
         
       </nav>
 
@@ -156,7 +147,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../contents.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
       <li>Distributing your package</li>
     
@@ -213,14 +204,14 @@ here because you can find most of the necessary details
 <div class="section" id="steps-involved">
 <h3>Steps involved<a class="headerlink" href="#steps-involved" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Create a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code></li>
-<li>Create a README</li>
-<li>Create a LICENSE file and name it in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.
-Check out classifiers <a class="reference external" href="https://pypi.org/classifiers/">here</a>.</li>
-<li>Generating the distribution files</li>
-<li>Create normal <code class="docutils literal notranslate"><span class="pre">PyPi</span></code> account and a test account.</li>
-<li>Upload project using the PyPi</li>
-<li>Check if you can install it using pip.</li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code></p></li>
+<li><p>Create a README</p></li>
+<li><p>Create a LICENSE file and name it in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.
+Check out classifiers <a class="reference external" href="https://pypi.org/classifiers/">here</a>.</p></li>
+<li><p>Generating the distribution files</p></li>
+<li><p>Create normal <code class="docutils literal notranslate"><span class="pre">PyPi</span></code> account and a test account.</p></li>
+<li><p>Upload project using the PyPi</p></li>
+<li><p>Check if you can install it using pip.</p></li>
 </ol>
 <p>Before the steps your package should have this structure:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>how_to_make_a_python_package/
@@ -261,14 +252,14 @@ download the package onto their system.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> (<a class="reference internal" href="installation.html#setup-py"><span class="std std-ref">setup.py</span></a>) makes sure that all the necessary info to
 install and distribute your package is known. Important features to note are</p>
 <ul>
-<li><p class="first">If you choose to load the long description from a text file that is not an
+<li><p>If you choose to load the long description from a text file that is not an
 <code class="docutils literal notranslate"><span class="pre">.rst</span></code> file, you need to specify the file type using the keyword argument</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">long_description_content_type</span><span class="o">=</span><span class="s2">&quot;text/markdown&quot;</span>
 </pre></div>
 </div>
 <p>if the file type is MarkDown for example.</p>
 </li>
-<li><p class="first">Specify all the requirements for the installation in the keyword argument</p>
+<li><p>Specify all the requirements for the installation in the keyword argument</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;numpy&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;other_package&gt;&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -277,9 +268,8 @@ environment that does not have the requirements installed, the module will
 error, of course. Hence, it is convenient to mention
 requirements here.</p>
 </li>
-<li><p class="first">The classifiers have to have a certain format. If they aren’t, the upload
-will fail. Check out classifiers <a class="reference external" href="https://pypi.org/classifiers/">here</a>.</p>
-</li>
+<li><p>The classifiers have to have a certain format. If they aren’t, the upload
+will fail. Check out classifiers <a class="reference external" href="https://pypi.org/classifiers/">here</a>.</p></li>
 </ul>
 <p>The rest is probably self-explaining.</p>
 <p>Here, a setup file with all the bare necessities (Copied from
@@ -411,24 +401,24 @@ points made on
 you can do much the same as you did in this tutorial, but with these
 important differences:</p>
 <ul class="simple">
-<li>Choose a memorable and unique name for your package.
-You don’t have to append your username as you did in the tutorial.</li>
-<li>Register an account on <a class="reference external" href="https://pypi.org">https://pypi.org</a> - note that these are two
+<li><p>Choose a memorable and unique name for your package.
+You don’t have to append your username as you did in the tutorial.</p></li>
+<li><p>Register an account on <a class="reference external" href="https://pypi.org">https://pypi.org</a> - note that these are two
 separate servers and the login details from the test server are not
-shared with the main server.</li>
-<li>Use twine upload dist/* to upload your package and enter your
+shared with the main server.</p></li>
+<li><p>Use twine upload dist/* to upload your package and enter your
 credentials for the account you registered on the real PyPI. Now that
 you’re uploading the package in production, you don’t need to specify
-–repository-url; the package will upload to <a class="reference external" href="https://pypi.org/">https://pypi.org/</a> by default.</li>
-<li>Install your package from the real PyPI using pip install [your-package].</li>
+–repository-url; the package will upload to <a class="reference external" href="https://pypi.org/">https://pypi.org/</a> by default.</p></li>
+<li><p>Install your package from the real PyPI using pip install [your-package].</p></li>
 </ul>
 <p>At this point if you want to read more on packaging Python libraries
 here are some things you can do:</p>
 <ul class="simple">
-<li>Read more about using setuptools to package libraries in Packaging and
-distributing projects.</li>
-<li>Read about Packaging binary extensions.</li>
-<li>Consider alternatives to setuptools such as flit, hatch, and poetry.</li>
+<li><p>Read more about using setuptools to package libraries in Packaging and
+distributing projects.</p></li>
+<li><p>Read about Packaging binary extensions.</p></li>
+<li><p>Consider alternatives to setuptools such as flit, hatch, and poetry.</p></li>
 </ul>
 </div></blockquote>
 </div>

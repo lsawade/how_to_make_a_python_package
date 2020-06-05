@@ -77,15 +77,15 @@ to look at. There are other themes out there. But I just like this one.
 
 
 ``index.rst``
-=============
+================
 
-The ``index.rst`` is used to control the content in your documentation.
+The ``contents.rst`` is used to control the content in your documentation.
 Usually this is done by the so-called ``toctree`` directive (table of
 contents tree), which allows us to include files so that not the complete
 documentation has to be written in one file. A standard file (the one of this
 documentation) looks as follows:
 
-.. literalinclude:: ../contents.rst
+.. literalinclude:: ../index.rst
     :language: rst
     :linenos:
 
