@@ -93,6 +93,20 @@
 <li class="toctree-l3"><a class="reference internal" href="#index-rst"><code class="docutils literal notranslate"><span class="pre">index.rst</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#api">API</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#offline-docs">Offline Docs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-your-documentation-online-2-ways">Publishing your documentation online 2 ways</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gh-pages"><cite>gh-pages</cite></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-branch">Create branch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#delete-previous-build">Delete previous build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#get-necessary-files-from-master-branch">Get necessary files from <cite>master</cite> <cite>branch</cite></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compile-the-documentation">Compile the documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#move-files-into-html-from-build-folder-to-main-repo">Move files into <cite>html</cite> from <cite>build</cite> folder to main repo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#remove-files-unnecessary-fro-the-website">Remove files unnecessary fro the website</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stage-the-changes">Stage the changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#commit-push-branch-to-github-repo">Commit &amp; push branch to github repo</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#readthedocs">ReadTheDocs</a></li>
 </ul>
 </li>
@@ -377,6 +391,179 @@ make html
 The pdf, I assume, you can find yourself, but if you want to open the <code class="docutils literal notranslate"><span class="pre">html</span></code>
 it’s the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file you want to open. It brings you directly to
 offline webpage when opened.</p>
+</div>
+</div>
+<div class="section" id="publishing-your-documentation-online-2-ways">
+<h2>Publishing your documentation online 2 ways<a class="headerlink" href="#publishing-your-documentation-online-2-ways" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways you can publish your documentation online. You could either
+publish it through an external service such as <cite>ReadTheDocs</cite>, or, my now
+preferred way, through <cite>github-pages</cite>, directly from your github repo from a
+separate branch.
+The branch style setup is slightly more difficult, but I would definitely
+recommend it since you are not dependent on third-party services
+(except <cite>github</cite>).
+Both ways are explained below and work equally well.
+Since I prefer the
+<cite>github-pages</cite></p>
+<div class="section" id="gh-pages">
+<h3><cite>gh-pages</cite><a class="headerlink" href="#gh-pages" title="Permalink to this headline">¶</a></h3>
+<p>After having set up the documentation locally, you can host it in a very
+simple, yet a bit tricky way on github pages if you setup your <cite>Makefile</cite>
+correctly. Through in the <cite>sphinx</cite> setup already created a Makefile to create
+documentation. Now we create our own <cite>Makefile</cite> in the repodirectory that links
+directly to the <cite>sphinx</cite> one so that you can run <cite>make html/pdf</cite> right from the
+main repo. Additionally, we add another <cite>target</cite> to our <cite>Makefile</cite>, <cite>gh-pages</cite>.</p>
+<div class="highlight-make notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c"># Minimal makefile for Sphinx documentation</span>
+<span class="c">#</span>
+
+<span class="c"># You can set these variables from the command line, and also</span>
+<span class="c"># from the environment for the first two.</span>
+<span class="nv">SPHINXOPTS</span>    <span class="o">?=</span>
+<span class="nv">SPHINXBUILD</span>   <span class="o">?=</span> sphinx-build
+<span class="nv">SOURCEDIR</span>     <span class="o">=</span> docs/source
+<span class="nv">BUILDDIR</span>      <span class="o">=</span> docs/build
+<span class="nv">GH_PAGES_SOURCES</span> <span class="o">=</span> docs matpy tests setup.py .readthedocs.yml environment.yml Makefile
+
+<span class="c"># Put it first so that &quot;make&quot; without argument is like &quot;make help&quot;.</span>
+<span class="nf">help</span><span class="o">:</span>
+	@<span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -M <span class="nb">help</span> <span class="s2">&quot;</span><span class="k">$(</span>SOURCEDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span>BUILDDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="k">$(</span>SPHINXOPTS<span class="k">)</span> <span class="k">$(</span>O<span class="k">)</span>
+
+<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">help</span> <span class="n">Makefile</span>
+
+<span class="c"># Catch-all target: route all unknown targets to Sphinx using the new</span>
+<span class="c"># &quot;make mode&quot; option.  $(O) is meant as a shortcut for $(SPHINXOPTS).</span>
+<span class="nf">%</span><span class="o">:</span> <span class="n">Makefile</span>
+	@<span class="k">$(</span>SPHINXBUILD<span class="k">)</span> -M <span class="nv">$@</span> <span class="s2">&quot;</span><span class="k">$(</span>SOURCEDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="s2">&quot;</span><span class="k">$(</span>BUILDDIR<span class="k">)</span><span class="s2">&quot;</span> <span class="k">$(</span>SPHINXOPTS<span class="k">)</span> <span class="k">$(</span>O<span class="k">)</span>
+
+<span class="nf">gh-pages</span><span class="o">:</span>
+	git checkout gh-pages
+	rm -rf build _sources _static _modules chapters
+	git checkout master <span class="k">$(</span>GH_PAGES_SOURCES<span class="k">)</span>
+	git reset HEAD
+	make html
+	mv -fv docs/build/html/* ./
+	rm -rf <span class="k">$(</span>GH_PAGES_SOURCES<span class="k">)</span> build
+	git add -A
+	git ci -m <span class="s2">&quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot;</span> <span class="o">&amp;&amp;</span> git push origin gh-pages <span class="p">;</span> git checkout master
+
+<span class="nf">dist</span><span class="o">:</span>
+	python3 -m pip install --user --upgrade setuptools wheel
+	python3 setup.py sdist bdist_wheel
+	python3 -m twine upload dist/*
+</pre></div>
+</td></tr></table></div>
+<p>The very first time we need to create a branch called <cite>gh-pages</cite>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create branch</span>
+git branch gh-pages
+</pre></div>
+</div>
+<p>This creates your documentation branch in your local git repo. Afterwards we can
+call</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create extra branch and clear unnecessary files afterwards</span>
+make gh-pages
+</pre></div>
+</div>
+<p>To automatically checkout out all necessary files, compile the html data,
+delete unnecessary data, and finally push the branch to the online <cite>gh-pages</cite>
+branch.</p>
+<p>To be clear what’s happening, let’s go through the <cite>Makefile</cite> <cite>target</cite>
+<cite>gh-pages</cite> line by line.</p>
+<div class="section" id="create-branch">
+<h4>Create branch<a class="headerlink" href="#create-branch" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git checkout gh-pages
+</pre></div>
+</div>
+</div>
+<div class="section" id="delete-previous-build">
+<h4>Delete previous build<a class="headerlink" href="#delete-previous-build" title="Permalink to this headline">¶</a></h4>
+<p>This step is redundant for building the first time, so it is skipped.</p>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>rm -rf build _sources _static _modules chapters
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-necessary-files-from-master-branch">
+<h4>Get necessary files from <cite>master</cite> <cite>branch</cite><a class="headerlink" href="#get-necessary-files-from-master-branch" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git checkout master $(GH_PAGES_SOURCES)
+</pre></div>
+</div>
+<p>This line gets all the necessary files listed in the <cite>GH_PAGES_SOURCES</cite>
+variable declaration at the top of the file to create your documentaion;
+i.e. the documentation folder, the package filde the test folder, and other
+files which are presented in the documentation later on.</p>
+</div>
+<div class="section" id="compile-the-documentation">
+<h4>Compile the documentation<a class="headerlink" href="#compile-the-documentation" title="Permalink to this headline">¶</a></h4>
+<p>Just like you did locally, compile the documenation with the following line</p>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</div>
+</div>
+<div class="section" id="move-files-into-html-from-build-folder-to-main-repo">
+<h4>Move files into <cite>html</cite> from <cite>build</cite> folder to main repo<a class="headerlink" href="#move-files-into-html-from-build-folder-to-main-repo" title="Permalink to this headline">¶</a></h4>
+<p>This step ensures that <cite>github-pages</cite> can read your files</p>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>mv -fv docs/build/html/* ./
+</pre></div>
+</div>
+</div>
+<div class="section" id="remove-files-unnecessary-fro-the-website">
+<h4>Remove files unnecessary fro the website<a class="headerlink" href="#remove-files-unnecessary-fro-the-website" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>rm -rf $(GH_PAGES_SOURCES) build
+</pre></div>
+</div>
+</div>
+<div class="section" id="stage-the-changes">
+<h4>Stage the changes<a class="headerlink" href="#stage-the-changes" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git add -A
+</pre></div>
+</div>
+</div>
+<div class="section" id="commit-push-branch-to-github-repo">
+<h4>Commit &amp; push branch to github repo<a class="headerlink" href="#commit-push-branch-to-github-repo" title="Permalink to this headline">¶</a></h4>
+<p>This is a pretty long one liner, but to split it up by the <cite>&amp;&amp;</cite>, it first
+commits the changes with a message to the <cite>gh-pages</cite> <cite>branch</cite>. Second,
+it pushes the changes to the online repo <cite>gh-pages</cite> branch. (I don’t remember
+whether you had to create that one manually, LMK, please, Peter). Finally,
+we switch back to the master branch.</p>
+<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git ci -m &quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot; &amp;&amp; git push origin gh-pages ; git checkout master
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="readthedocs">
 <h3>ReadTheDocs<a class="headerlink" href="#readthedocs" title="Permalink to this headline">¶</a></h3>
