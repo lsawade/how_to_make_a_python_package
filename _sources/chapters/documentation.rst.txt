@@ -187,7 +187,7 @@ To be clear what's happening, let's go through the `Makefile` `target`
 Create branch
 #############
 
-.. code-block:: Makefile
+.. code-block:: make
     
     git checkout gh-pages
 
@@ -196,7 +196,7 @@ Delete previous build
 
 This step is redundant for building the first time, so it is skipped.
 
-.. code-block:: Makefile
+.. code-block:: make
     
     rm -rf build _sources _static _modules chapters
 
@@ -204,7 +204,7 @@ This step is redundant for building the first time, so it is skipped.
 Get necessary files from `master` `branch`
 ##########################################
 
-.. code-block:: Makefile
+.. code-block:: make
     
     git checkout master $(GH_PAGES_SOURCES)
 
@@ -218,7 +218,7 @@ Compile the documentation
 
 Just like you did locally, compile the documenation with the following line
 
-.. code-block:: Makefile
+.. code-block:: make
 
     make html
 
@@ -228,21 +228,21 @@ Move files into `html` from `build` folder to main repo
 
 This step ensures that `github-pages` can read your files
 
-.. code-block:: Makefile
+.. code-block:: make
 
     mv -fv docs/build/html/* ./
 
 Remove files unnecessary fro the website
 ########################################
 
-.. code-block:: Makefile
+.. code-block:: make
 
     rm -rf $(GH_PAGES_SOURCES) build
 
 Stage the changes
 #################
 
-.. code-block:: Makefile
+.. code-block:: make
     
     git add -A
 
@@ -256,7 +256,7 @@ it pushes the changes to the online repo `gh-pages` branch. (I don't remember
 whether you had to create that one manually, LMK, please, Peter). Finally,
 we switch back to the master branch.
 
-.. code-block:: Makefile
+.. code-block:: make
 
     git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages ; git checkout master
 

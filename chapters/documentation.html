@@ -506,20 +506,20 @@ branch.</p>
 <cite>gh-pages</cite> line by line.</p>
 <div class="section" id="create-branch">
 <h4>Create branch<a class="headerlink" href="#create-branch" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git checkout gh-pages
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>git checkout gh-pages
 </pre></div>
 </div>
 </div>
 <div class="section" id="delete-previous-build">
 <h4>Delete previous build<a class="headerlink" href="#delete-previous-build" title="Permalink to this headline">¶</a></h4>
 <p>This step is redundant for building the first time, so it is skipped.</p>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>rm -rf build _sources _static _modules chapters
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>rm -rf build _sources _static _modules chapters
 </pre></div>
 </div>
 </div>
 <div class="section" id="get-necessary-files-from-master-branch">
 <h4>Get necessary files from <cite>master</cite> <cite>branch</cite><a class="headerlink" href="#get-necessary-files-from-master-branch" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git checkout master $(GH_PAGES_SOURCES)
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>git checkout master $(GH_PAGES_SOURCES)
 </pre></div>
 </div>
 <p>This line gets all the necessary files listed in the <cite>GH_PAGES_SOURCES</cite>
@@ -530,26 +530,26 @@ files which are presented in the documentation later on.</p>
 <div class="section" id="compile-the-documentation">
 <h4>Compile the documentation<a class="headerlink" href="#compile-the-documentation" title="Permalink to this headline">¶</a></h4>
 <p>Just like you did locally, compile the documenation with the following line</p>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>make html
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>make html
 </pre></div>
 </div>
 </div>
 <div class="section" id="move-files-into-html-from-build-folder-to-main-repo">
 <h4>Move files into <cite>html</cite> from <cite>build</cite> folder to main repo<a class="headerlink" href="#move-files-into-html-from-build-folder-to-main-repo" title="Permalink to this headline">¶</a></h4>
 <p>This step ensures that <cite>github-pages</cite> can read your files</p>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>mv -fv docs/build/html/* ./
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>mv -fv docs/build/html/* ./
 </pre></div>
 </div>
 </div>
 <div class="section" id="remove-files-unnecessary-fro-the-website">
 <h4>Remove files unnecessary fro the website<a class="headerlink" href="#remove-files-unnecessary-fro-the-website" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>rm -rf $(GH_PAGES_SOURCES) build
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>rm -rf $(GH_PAGES_SOURCES) build
 </pre></div>
 </div>
 </div>
 <div class="section" id="stage-the-changes">
 <h4>Stage the changes<a class="headerlink" href="#stage-the-changes" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git add -A
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>git add -A
 </pre></div>
 </div>
 </div>
@@ -560,7 +560,7 @@ commits the changes with a message to the <cite>gh-pages</cite> <cite>branch</ci
 it pushes the changes to the online repo <cite>gh-pages</cite> branch. (I don’t remember
 whether you had to create that one manually, LMK, please, Peter). Finally,
 we switch back to the master branch.</p>
-<div class="highlight-Makefile notranslate"><div class="highlight"><pre><span></span>git ci -m &quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot; &amp;&amp; git push origin gh-pages ; git checkout master
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span>git ci -m &quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot; &amp;&amp; git push origin gh-pages ; git checkout master
 </pre></div>
 </div>
 </div>
