@@ -4,3 +4,6 @@ __pycache__
 how_to_make_a_python_package.egg-info
 build
 .DS_Store
+.mypy_cache
+.vscode
+_build

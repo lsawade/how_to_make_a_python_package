@@ -89,7 +89,7 @@ documentation) looks as follows:
     :language: rst
     :linenos:
 
-This way, we can write a very user-friendly structured documentation.
+This way, we can write a very user-friendly structured documentation. 
 
 
 
@@ -131,6 +131,135 @@ The built files can then be found in ``docs/build/pdf`` or ``docs/build/html``.
 The pdf, I assume, you can find yourself, but if you want to open the ``html``
 it's the ``index.html`` file you want to open. It brings you directly to
 offline webpage when opened.
+
+
+
+Publishing your documentation online 2 ways
++++++++++++++++++++++++++++++++++++++++++++
+
+There are two ways you can publish your documentation online. You could either 
+publish it through an external service such as `ReadTheDocs`, or, my now 
+preferred way, through `github-pages`, directly from your github repo from a 
+separate branch. 
+The branch style setup is slightly more difficult, but I would definitely 
+recommend it since you are not dependent on third-party services
+(except `github`). 
+Both ways are explained below and work equally well. 
+Since I prefer the 
+`github-pages`
+
+`gh-pages`
+==========
+
+After having set up the documentation locally, you can host it in a very 
+simple, yet a bit tricky way on github pages if you setup your `Makefile`
+correctly. Through in the `sphinx` setup already created a Makefile to create 
+documentation. Now we create our own `Makefile` in the repodirectory that links 
+directly to the `sphinx` one so that you can run `make html/pdf` right from the
+main repo. Additionally, we add another `target` to our `Makefile`, `gh-pages`.
+
+.. literalinclude:: ../../../Makefile
+    :language: make
+    :linenos:
+
+The very first time we need to create a branch called `gh-pages`.
+
+.. code-block:: bash
+
+    # Create branch
+    git branch gh-pages
+
+This creates your documentation branch in your local git repo. Afterwards we can
+call
+
+.. code-block:: bash
+
+    # Create extra branch and clear unnecessary files afterwards
+    make gh-pages
+
+To automatically checkout out all necessary files, compile the html data,
+delete unnecessary data, and finally push the branch to the online `gh-pages`
+branch.
+
+To be clear what's happening, let's go through the `Makefile` `target`
+`gh-pages` line by line.
+
+Create branch
+#############
+
+.. code-block:: Makefile
+    
+    git checkout gh-pages
+
+Delete previous build 
+#####################
+
+This step is redundant for building the first time, so it is skipped.
+
+.. code-block:: Makefile
+    
+    rm -rf build _sources _static _modules chapters
+
+
+Get necessary files from `master` `branch`
+##########################################
+
+.. code-block:: Makefile
+    
+    git checkout master $(GH_PAGES_SOURCES)
+
+This line gets all the necessary files listed in the `GH_PAGES_SOURCES`
+variable declaration at the top of the file to create your documentaion;
+i.e. the documentation folder, the package filde the test folder, and other
+files which are presented in the documentation later on.
+
+Compile the documentation
+#########################
+
+Just like you did locally, compile the documenation with the following line
+
+.. code-block:: Makefile
+
+    make html
+
+
+Move files into `html` from `build` folder to main repo
+#######################################################
+
+This step ensures that `github-pages` can read your files
+
+.. code-block:: Makefile
+
+    mv -fv docs/build/html/* ./
+
+Remove files unnecessary fro the website
+########################################
+
+.. code-block:: Makefile
+
+    rm -rf $(GH_PAGES_SOURCES) build
+
+Stage the changes
+#################
+
+.. code-block:: Makefile
+    
+    git add -A
+
+
+Commit & push branch to github repo 
+###################################
+
+This is a pretty long one liner, but to split it up by the `&&`, it first
+commits the changes with a message to the `gh-pages` `branch`. Second,
+it pushes the changes to the online repo `gh-pages` branch. (I don't remember
+whether you had to create that one manually, LMK, please, Peter). Finally,
+we switch back to the master branch.
+
+.. code-block:: Makefile
+
+    git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages ; git checkout master
+
 
 
 ReadTheDocs
