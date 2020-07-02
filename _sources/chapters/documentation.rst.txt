@@ -187,7 +187,7 @@ To be clear what's happening, let's go through the `Makefile` `target`
 Create branch
 #############
 
-.. code-block:: make
+.. code-block:: bash
     
     git checkout gh-pages
 
@@ -196,7 +196,7 @@ Delete previous build
 
 This step is redundant for building the first time, so it is skipped.
 
-.. code-block:: make
+.. code-block:: bash
     
     rm -rf build _sources _static _modules chapters
 
@@ -204,21 +204,22 @@ This step is redundant for building the first time, so it is skipped.
 Get necessary files from `master` `branch`
 ##########################################
 
-.. code-block:: make
+.. code-block:: bash
     
-    git checkout master $(GH_PAGES_SOURCES)
+    git checkout master $(GH_PAGES_SOURCES) .gitignore
 
 This line gets all the necessary files listed in the `GH_PAGES_SOURCES`
 variable declaration at the top of the file to create your documentaion;
 i.e. the documentation folder, the package filde the test folder, and other
 files which are presented in the documentation later on.
 
+
 Compile the documentation
 #########################
 
 Just like you did locally, compile the documenation with the following line
 
-.. code-block:: make
+.. code-block:: bash
 
     make html
 
@@ -228,21 +229,21 @@ Move files into `html` from `build` folder to main repo
 
 This step ensures that `github-pages` can read your files
 
-.. code-block:: make
+.. code-block:: bash
 
     mv -fv docs/build/html/* ./
 
 Remove files unnecessary fro the website
 ########################################
 
-.. code-block:: make
+.. code-block:: bash
 
     rm -rf $(GH_PAGES_SOURCES) build
 
 Stage the changes
 #################
 
-.. code-block:: make
+.. code-block:: bash
     
     git add -A
 
@@ -256,7 +257,7 @@ it pushes the changes to the online repo `gh-pages` branch. (I don't remember
 whether you had to create that one manually, LMK, please, Peter). Finally,
 we switch back to the master branch.
 
-.. code-block:: make
+.. code-block:: bash
 
     git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages ; git checkout master
 
