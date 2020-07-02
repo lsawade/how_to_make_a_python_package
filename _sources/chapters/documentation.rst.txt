@@ -213,6 +213,13 @@ variable declaration at the top of the file to create your documentaion;
 i.e. the documentation folder, the package filde the test folder, and other
 files which are presented in the documentation later on.
 
+.. note:: 
+
+    Note that the `.gitignore` is outside the `GH_PAGES_SOURCES`. We do not
+    want to delete the `.gitignore` before we stage and commit our changes 
+    later on, but all of `GH_PAGES_SOURCES` is deleted. Hence, we check it out
+    separately.
+
 
 Compile the documentation
 #########################
