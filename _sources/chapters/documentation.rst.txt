@@ -24,9 +24,16 @@ Setting up Sphinx
 +++++++++++++++++
 
 Let's say you have created your ``conda environment`` using the
-``environment.yml`` that was provided with the sample package. In your own
-package directory create a docs subdirectory just as in the ``htmapp``
-repository and ``cd`` into it
+``environment.yml`` that was provided with the sample package. 
+If you are working on your own package, make sure that you have
+both `sphinx` installed and the `sphinx-rtd-theme`. If not,
+
+.. code-block:: bash
+
+    $ pip install sphinx sphinx-rtd-theme
+
+Now you're all set to start compiling some documentation!
+First, let's create a directory for the docs and all things related
 
 .. code-block:: bash
 

@@ -197,9 +197,14 @@ the subtle and the obvious differences between <code class="docutils literal not
 <div class="section" id="setting-up-sphinx">
 <h2>Setting up Sphinx<a class="headerlink" href="#setting-up-sphinx" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say you have created your <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment</span></code> using the
-<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> that was provided with the sample package. In your own
-package directory create a docs subdirectory just as in the <code class="docutils literal notranslate"><span class="pre">htmapp</span></code>
-repository and <code class="docutils literal notranslate"><span class="pre">cd</span></code> into it</p>
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> that was provided with the sample package.
+If you are working on your own package, make sure that you have
+both <cite>sphinx</cite> installed and the <cite>sphinx-rtd-theme</cite>. If not,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install sphinx sphinx-rtd-theme
+</pre></div>
+</div>
+<p>Now you’re all set to start compiling some documentation!
+First, let’s create a directory for the docs and all things related</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Provided you are in your package repo</span>
 $ mkdir docs <span class="o">&amp;&amp;</span> <span class="nb">cd</span> docs
 </pre></div>
