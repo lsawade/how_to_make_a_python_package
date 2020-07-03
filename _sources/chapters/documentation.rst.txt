@@ -151,6 +151,9 @@ Since I prefer the
 `gh-pages`
 ==========
 
+.. note::
+
+    Before we get started, this option is only really possible if you choose
 After having set up the documentation locally, you can host it in a very 
 simple, yet a bit tricky way on github pages if you setup your `Makefile`
 correctly. Through in the `sphinx` setup already created a Makefile to create 
@@ -177,6 +180,20 @@ The very first time we need to create a branch called `gh-pages`.
 
     # Create branch
     git branch gh-pages
+
+.. note :: 
+
+    Do not switch to the branch! One user has reported that `git branch <branch>`
+    showed unexpected behaviour by switching to the branch. 
+    Check whether you are on the `master` branch using:
+
+    `git branch`
+
+    The branch with the star is the current branch. If it is not on the `master`
+    `branch`, switch to the `master` `branch` using 
+
+    `git checkout master`
+
 
 This creates your documentation branch in your local git repo. Afterwards we can
 call

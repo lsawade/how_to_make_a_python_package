@@ -407,6 +407,10 @@ Since I prefer the
 <cite>github-pages</cite></p>
 <div class="section" id="gh-pages">
 <h3><cite>gh-pages</cite><a class="headerlink" href="#gh-pages" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before we get started, this option is only really possible if you choose</p>
+</div>
 <p>After having set up the documentation locally, you can host it in a very
 simple, yet a bit tricky way on github pages if you setup your <cite>Makefile</cite>
 correctly. Through in the <cite>sphinx</cite> setup already created a Makefile to create
@@ -485,7 +489,7 @@ and we add a new <cite>target</cite> to our <cite>Makefile</cite>, called <cite>
 	mv -fv docs/build/html/* ./
 	rm -rf <span class="k">$(</span>GH_PAGES_SOURCES<span class="k">)</span> build
 	git add -A
-	git ci -m <span class="s2">&quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot;</span> <span class="o">&amp;&amp;</span> git push origin gh-pages <span class="p">;</span> git checkout master
+	git commit -a -v -m <span class="s2">&quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot;</span> <span class="o">&amp;&amp;</span> git push origin gh-pages <span class="p">;</span> git checkout master
 
 <span class="nf">dist</span><span class="o">:</span>
 	python3 -m pip install --user --upgrade setuptools wheel
@@ -501,6 +505,16 @@ and we add a new <cite>target</cite> to our <cite>Makefile</cite>, called <cite>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create branch</span>
 git branch gh-pages
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do not switch to the branch! One user has reported that <cite>git branch &lt;branch&gt;</cite>
+showed unexpected behaviour by switching to the branch.
+Check whether you are on the <cite>master</cite> branch using:</p>
+<p><cite>git branch</cite></p>
+<p>The branch with the star is the current branch. If it is not on the <cite>master</cite>
+<cite>branch</cite>, switch to the <cite>master</cite> <cite>branch</cite> using</p>
+<p><cite>git checkout master</cite></p>
 </div>
 <p>This creates your documentation branch in your local git repo. Afterwards we can
 call</p>
