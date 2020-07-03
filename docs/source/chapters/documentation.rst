@@ -145,8 +145,7 @@ The branch style setup is slightly more difficult, but I would definitely
 recommend it since you are not dependent on third-party services
 (except `github`). 
 Both ways are explained below and work equally well. 
-Since I prefer the 
-`github-pages`
+Since I prefer the `github-pages`, let's start with that one.
 
 `gh-pages`
 ==========
@@ -155,11 +154,12 @@ Since I prefer the
 
     Before we get started, this option is only really possible if you choose
     to make your Github repo public. If it is not public, github refuses to host
-    online documenation (which makes sense). You can follow this instructions
-    either way, the disadvantage is that you won't be able to access the 
-    online documenation. The advantage is that once you have set this up and 
-    decide to make you repository public, it takes seconds to host your
-    up-to-date documentation.
+    online documenation (which makes sense). You can follow these instructions
+    either way. The disadvantage is that you won't be able to access the 
+    online documenation (not the case for the `ReadTheDocs` documentation). 
+    The advantage is that once you have set this up and decide to make you 
+    repository public, it takes seconds to host your
+    up-to-date documentation (almost by yourself!).
 
 After having set up the documentation locally, you can host it in a very 
 simple, yet a bit tricky way on github pages if you setup your `Makefile`
