@@ -4,20 +4,20 @@ Documentation
 -------------
 
 Everyone should want their code documented. The simple reason for that is
-that nobody will be able to use your code of there is no documentation. So,
+that nobody will be able to use your code if there is no documentation. So,
 let's get started.
 
 Pre-Setup-Rambling
 ++++++++++++++++++
 
-First of all, all documentation in for Python code is written in
+First of all, all documentation for Python code is written in
 ReStructuredText, short: ``RST``. It is extremely similar to Markdown, but it
 has a few advantages when it comes to writing longer documentation. For example,
-if you want to write so much documentation that the it's easier to split
-things up into chapter, you can simply include chapter files into a main file
+if you want to write so much documentation that it's easier to split
+things up into chapters, you can simply include chapter files into a main file
 (much like in LateX), which is not possible using Markdown. But this is just
-one of the perks. When you start working with sphinx you will start noticing
-the subtle and the obvious differences between ``RST`` and ``Markdown``.
+one of the perks. When you start working with sphinx, you will start noticing
+the subtle and obvious differences between ``RST`` and ``Markdown``.
 
 
 Setting up Sphinx
@@ -79,7 +79,10 @@ The extensions enable the possibility on auto documenting your code, meaning
 the docstrings of your functions and classes are gonna be read and added when
 the ``.. auto-module`` directive is called. ``autoclass_content = 'both'``
 makes sure that when a class is documented in your code the ``__init__`` part
-will be documented as well. Finally, the ``sphinx_rtd_theme`` is simply nice
+will be documented as well. If you are writing your docstrings in a language other
+than `sphinx` (e.g. `Numpy`, which looks nicer (less dense) in your script)
+adding ``sphinx.ext.napoleon`` to extensions, will auto-translate
+those docstrings. Finally, the ``sphinx_rtd_theme`` is simply nice
 to look at. There are other themes out there. But I just like this one.
 
 
@@ -141,8 +144,8 @@ offline webpage when opened.
 
 
 
-Publishing your documentation online 2 ways
-+++++++++++++++++++++++++++++++++++++++++++
+Publishing your documentation online: 2 ways
+++++++++++++++++++++++++++++++++++++++++++++
 
 There are two ways you can publish your documentation online. You could either 
 publish it through an external service such as `ReadTheDocs`, or, my now 
@@ -163,7 +166,8 @@ Since I prefer the `github-pages`, let's start with that one.
     to make your Github repo public. If it is not public, github refuses to host
     online documenation (which makes sense). You can follow these instructions
     either way. The disadvantage is that you won't be able to access the 
-    online documenation (not the case for the `ReadTheDocs` documentation). 
+    online documenation (that is also the case for the `ReadTheDocs` documentation
+    if you don't have a `pro` account). 
     The advantage is that once you have set this up and decide to make you 
     repository public, it takes seconds to host your
     up-to-date documentation (almost by yourself!).
@@ -250,7 +254,7 @@ Get necessary files from `master` `branch`
 
 This line gets all the necessary files listed in the `GH_PAGES_SOURCES`
 variable declaration at the top of the file to create your documentaion;
-i.e. the documentation folder, the package filde the test folder, and other
+i.e. the documentation folder, the package filed the test folder, and other
 files which are presented in the documentation later on.
 
 .. note:: 
@@ -298,10 +302,9 @@ Stage the changes
 Commit & push branch to github repo 
 ###################################
 
-This is a pretty long one liner, but to split it up by the `&&`, it first
+This is a pretty long one-liner, but to split it up by the `&&`, it first
 commits the changes with a message to the `gh-pages` `branch`. Second,
-it pushes the changes to the online repo `gh-pages` branch. (I don't remember
-whether you had to create that one manually, LMK, please, Peter). Finally,
+it pushes the changes to the online repo `gh-pages` branch. Finally,
 we switch back to the master branch.
 
 .. code-block:: bash
@@ -324,7 +327,7 @@ necessary to build your documentation and how to build it. Let's take a look.
 
 There are a few important steps here. The first entry in this file that needs
 to be manually set is the ``sphinx`` keyword. The location of the conf.py
-needs to be set in relation to the repository.The second one is the ``formats``
+needs to be set in relation to the repository. The second one is the ``formats``
 keyword, which if you want ``html``, ``PDF`` and ``EPub`` built and
 donwloadable from the page, is simply 'all'. Otherwise specify.
 Much like for the installation and the unit testing we also need to specify the
