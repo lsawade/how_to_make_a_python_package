@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 modify_logger(logger)
 
 
-def matmul(a: np.array, b: np.array):
+def matmul(a: np.array, b: np.array) -> np.ndarray:
     """ Standard wrapper around numnpy's function.
 
     :param a: matrix A
@@ -80,7 +80,7 @@ def matmul(a: np.array, b: np.array):
     return c
 
 
-def dotprod(a: np.array, b: np.array):
+def dotprod(a: np.array, b: np.array) -> np.ndarray:
     """ Standard wrapper around numpy's function.
 
     :param a: matrix A
@@ -165,7 +165,7 @@ class MatrixMultiplication(object):
         # getattr(getattr(os, "path"), "join").
         self.method = getattr(sys.modules[__name__], method)
 
-    def __call__(self):
+    def __call__(self) -> str:
         """Simple call function that executes the multiplication.
 
         .. note::
