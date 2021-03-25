@@ -103,26 +103,13 @@ ____________
 The ``setup.cfg`` (:ref:`setup-cfg`) makes sure that all the necessary info to
 install and distribute your package is known. Important features to note are
 
-- Specify all the requirements for the installation in the keyword argument
+- Specify all the requirements for your package in the keyword argument
 
   .. code-block:: bash
     [options]
-    install_requires = numpy; other_package
+    install_requires = numpy; my_odd_requirement
 
-  in form illustrated above. If you don't and the package is installed into an
-  environment that does not have the requirements installed, the module will
-  error, of course. Hence, it is convenient to mention
-  requirements here. Note that those packages will only be available in the
-  installation process, not afterwards.
-
-- You can also specify requirements for your python package that will be installed
-  together with your package (i.e., the modules you import in your source code
-  as for instance ``SciPy`` or ``NumPy``) by adding the following
-
-  .. code-block:: bash
-    [metdata]
-    requires = numpy; scipy; my_odd_requirement
-  
+  in form illustrated above.
   In this case, the ``environment.yml`` becomes obsolete and we will only
   rely on Pypi.
 
