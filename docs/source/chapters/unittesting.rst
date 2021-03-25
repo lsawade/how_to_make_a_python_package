@@ -25,6 +25,12 @@ These are not perfect tests, but they do illustrate the basic usage of the
 set up a test environment. Note that in the last test we are not testing the
 output of the class' run since it is already tested with the previous two tests.
 This is the great thing about unit testing.
+The ``TestMatMul`` class' first method is ``SetUp()``. This method is executed
+when the class is initialised, so variables and some computations do not have to
+run for each testing method. Instead those variables will be saved as attributes
+of the test class. This is great if you want to avoid having to write the same
+piece of code several times or have to initialise an object that takes a lot of
+computation time and, thereby, reducing your total test computation time.
 
 
 Setting up a ``.travis.yml``

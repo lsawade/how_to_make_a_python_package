@@ -28,20 +28,34 @@ class TestMatMul(unittest.TestCase):
     """"A sample tests class to check if your modules' functions ar
     functioning."""
 
+    def setUp(self):
+        """
+        The setUp command is used to reduce the need for large amounts of
+        redudandant code. This will be executed and setup once before every
+        of your test-class' method.
+        Very useful if you want to load and setup a certain object.
+        """
+        # This might seem a little fabricated and unecessary for our example
+        # here setUp is actually an overkill
+        self.a1 = [1, 0]
+        self.a2 = [0, 1]
+        self.b1 = [4, 1]
+        self.b2 = [2, 2]
+
     def test_raise_shape_error(self):
         """Tests if error is raised when either A or B does not have 2
         dimensions"""
 
         # A does not have 2 dimensions
-        a = np.array([[[1, 0], [0, 1]], [[0, 1], [0, 1]]])
-        b = np.array([[4, 1], [2, 2]])
+        a = np.array([[self.a1, self.a2], [self.a2, self.a2]])
+        b = np.array([self.b1, self.b2])
 
         with self.assertRaises(ValueError):
             matmul(a, b)
 
         # B does not have 2 dimensions
-        a = np.array([[1, 0], [0, 1]])
-        b = np.array([[[1, 0], [0, 1]], [[0, 1], [0, 1]]])
+        a = np.array([self.a1, self.a2])
+        b = np.array([[self.a1, self.a2], [self.a2, self.a2]])
 
         with self.assertRaises(ValueError):
             matmul(a, b)
@@ -50,8 +64,8 @@ class TestMatMul(unittest.TestCase):
         """Tests whether an error is thrown when b doesn't match a."""
 
         # B has more rows than a has columns!
-        a = np.array([[1, 0], [0, 1]])
-        b = np.array([[4, 1], [2, 2], [2, 2]])
+        a = np.array([self.a1, self.a2])
+        b = np.array([self.b1, self.b2, self.b2])
 
         # Check if error is raised
         with self.assertRaises(ValueError):
@@ -61,11 +75,11 @@ class TestMatMul(unittest.TestCase):
         """Test the multiplication itself."""
 
         # Define matrix content.
-        a = np.array([[1, 0], [0, 1]])
-        b = np.array([[4, 1], [2, 2]])
+        a = np.array([self.a1, self.a2])
+        b = np.array([self.b1, self.b2])
 
         # Check result
-        self.assertTrue(np.all(np.array([[4, 1], [2, 2]] == matmul(a, b))))
+        self.assertTrue(np.all(np.array([self.b1, self.b2] == matmul(a, b))))
 
 
 class TestDot(unittest.TestCase):
