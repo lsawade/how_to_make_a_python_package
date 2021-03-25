@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = 'How to make a python package'
-copyright = '2019, Lucas Sawade'
-author = 'Lucas Sawade'
+copyright = '2021, htmapp development team'
+author = 'Lucas Sawade, Peter Makus'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.0.3'
 
 
 # -- General configuration ---------------------------------------------------
