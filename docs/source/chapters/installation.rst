@@ -79,11 +79,11 @@ It is normal Python code, but after installation
 
 you can simply run
 
-.. code-block:: python
+.. code-block:: bash
 
-    sample_bin
+    sample-bin
 
-from anywhere on your computer. Do make sure that this filenames do not
+from anywhere on your computer, which will run the python command ``sample_bin()``. Do make sure that this filenames do not
 conflict with your traditional command line tools such as ``ls``, ``cd``, etc.
 Otherwise you won't be able to use your created executables.
 
