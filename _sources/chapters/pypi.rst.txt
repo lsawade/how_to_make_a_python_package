@@ -47,14 +47,14 @@ Steps involved
 
 1. Create a ``setup.cfg`` and/or a ``setup.py``
 2. Create a README
-3. Create a LICENSE file and name it in ``setup.cfg``.
-   Check out classifiers `here <https://pypi.org/classifiers/>`_.
+3. Create a LICENSE file and name it in ``setup.cfg``. Check out classifiers `here <https://pypi.org/classifiers/>`_.
 4. Create a pyproject.toml (see the tutorial linked above).
-4. Generating the distribution files
-5. Create normal ``PyPi`` account and a test account.
-6. Upload project using the PyPi
-7. Check if you can install it using pip.
+5. Generating the distribution files
+6. Create normal ``PyPi`` account and a test account.
+7. Upload project using the PyPi
+8. Check if you can install it using pip.
 
+   
 Before the steps your package should have this structure:
 
 .. code-block:: bash
@@ -98,7 +98,7 @@ The build and dist are created to make it possible for other users to
 download the package onto their system.
 
 ``setup.cfg``
-____________
+_____________
 
 The ``setup.cfg`` (:ref:`setup-cfg`) makes sure that all the necessary info to
 install and distribute your package is known. Important features to note are
@@ -106,9 +106,10 @@ install and distribute your package is known. Important features to note are
 - Specify all the requirements for your package in the keyword argument
 
   .. code-block:: bash
-    [options]
-    install_requires = numpy; my_odd_requirement
 
+     install_requires = numpy; my_odd_requirement
+
+    
   in form illustrated above.
   In this case, the ``environment.yml`` becomes obsolete and we will only
   rely on Pypi.

@@ -1,5 +1,5 @@
 Logging
-------------
+-------
 
 As you probably noticed almost no package, e.g. :mod:`numpy` has print
 functions. Most packages use so called logging. Logging enables you to turn
@@ -13,7 +13,7 @@ Setting up your logging
 A standard practice is to set the logger in the :mod:`matpy.__init__` using
 Python's built-in :mod:`logging` module.
 
-.. literalinclude:: ../../../matpy/__init__.py
+.. literalinclude:: ../../../src/matpy/__init__.py
     :language: python
     :linenos:
 
@@ -27,7 +27,7 @@ All necessary code for modifying the logging is located in the
 :mod:`matpy.log_util`. The code is shown below and not all too complicated,
 but it is 'long'. Do not get intimidated and continue below!
 
-.. literalinclude:: ../../../matpy/log_util.py
+.. literalinclude:: ../../../src/matpy/log_util.py
     :language: python
     :linenos:
 

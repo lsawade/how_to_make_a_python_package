@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Installation &mdash; How to make a python package 0.0.3 documentation</title>
   
@@ -16,10 +16,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -32,6 +29,7 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -53,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> How to make a python package
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> How to make a python package
           
 
           
@@ -142,8 +140,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -155,7 +151,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="../_sources/chapters/installation.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -201,6 +197,83 @@ we want <code class="docutils literal notranslate"><span class="pre">setuptools.
 </pre></div>
 </div>
 <p>First, let’s have a look at the file in our project:</p>
+<div class="highlight-bash notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">[</span>metadata<span class="o">]</span>
+<span class="c1"># replace with your username:</span>
+<span class="nv">name</span> <span class="o">=</span> htmapp
+<span class="nv">version</span> <span class="o">=</span> <span class="m">0</span>.0.3
+<span class="nv">author</span> <span class="o">=</span> Lucas Sawade, Peter Makus
+<span class="nv">author_email</span> <span class="o">=</span> lsawade@princeton.edu
+<span class="nv">description</span> <span class="o">=</span> How to make a Python package.
+<span class="nv">long_description</span> <span class="o">=</span> file: README.md
+<span class="nv">long_description_content_type</span> <span class="o">=</span> text/markdown
+<span class="nv">url</span> <span class="o">=</span> https://github.com/lsawade/how_to_make_a_python_package
+<span class="nv">project_urls</span> <span class="o">=</span>
+    <span class="nv">Documentation</span> <span class="o">=</span> https://how-to-make-a-python-package.readthedocs.io/en/latest/
+    <span class="nv">TravisCI</span> <span class="o">=</span> https://travis-ci.com/github/lsawade/how_to_make_a_python_package
+<span class="nv">classifiers</span> <span class="o">=</span>
+    Programming Language :: Python :: <span class="m">3</span>
+    License :: OSI Approved :: GNU General Public License v3 or later <span class="o">(</span>GPLv3+<span class="o">)</span>
+    Operating System :: OS Independent
+<span class="nv">keywords</span> <span class="o">=</span> Fun, Education, Learning, Programming
+
+<span class="o">[</span>options<span class="o">]</span>
+<span class="nv">package_dir</span> <span class="o">=</span>
+    <span class="o">=</span> src
+<span class="nv">packages</span> <span class="o">=</span> find:
+<span class="nv">python_requires</span> <span class="o">=</span> &gt;<span class="o">=</span><span class="m">3</span>.6
+<span class="nv">install_requires</span> <span class="o">=</span> numpy
+<span class="nv">tests_require</span> <span class="o">=</span> pytest
+<span class="nv">zip_safe</span> <span class="o">=</span> False
+
+<span class="o">[</span>options.extras_require<span class="o">]</span>
+<span class="nv">docs</span> <span class="o">=</span> sphinx<span class="p">;</span> sphinx_rtd_theme
+<span class="nv">tests</span> <span class="o">=</span> pytest<span class="p">;</span> py
+
+<span class="o">[</span>options.entry_points<span class="o">]</span>
+<span class="nv">console_scripts</span> <span class="o">=</span>
+    sample-bin <span class="o">=</span> matpy.bins.sample_bin:main
+
+<span class="o">[</span>options.packages.find<span class="o">]</span>
+<span class="nv">where</span> <span class="o">=</span> src
+</pre></div>
+</td></tr></table></div>
 <p>Most of the defined options are quite self-explanatory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>options.packages.find<span class="o">]</span>
 <span class="nv">where</span> <span class="o">=</span> src
@@ -413,29 +486,37 @@ The file is pretty straightforward, so I’m gonna stop talking about it now.</p
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="unittesting.html" class="btn btn-neutral float-right" title="Unit Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="unittesting.html" class="btn btn-neutral float-right" title="Unit Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, htmapp development team.
+        
+        &copy; Copyright 2021, htmapp development team
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

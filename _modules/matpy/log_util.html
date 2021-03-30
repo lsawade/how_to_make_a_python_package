@@ -1,0 +1,422 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>matpy.log_util &mdash; How to make a python package 0.0.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> How to make a python package
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/unittesting.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/API.html"><code class="docutils literal notranslate"><span class="pre">matpy</span></code> API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/pypi.html">Distributing your package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">How to make a python package</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>matpy.log_util</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for matpy.log_util</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">This module includes a custom logger to make it easier to identify errors and</span>
+<span class="sd">debug etc.</span>
+
+<span class="sd">The module adds both another level to the logger and the corresponding</span>
+<span class="sd">formatter. If you want to remove or add any logging level make sure to edit</span>
+<span class="sd">both the CustomLogger and the CustomFormatter to accommodate your changes!</span>
+
+<span class="sd">:author:</span>
+<span class="sd">    Lucas Sawade (lsawade@princeton.edu, 2019)</span>
+
+<span class="sd">:license:</span>
+<span class="sd">    GNU Lesser General Public License, Version 3</span>
+<span class="sd">    (http://www.gnu.org/copyleft/lgpl.html)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">getLoggerClass</span>
+<span class="kn">from</span> <span class="nn">logging</span> <span class="kn">import</span> <span class="n">NOTSET</span>
+
+<span class="n">VERBOSE</span> <span class="o">=</span> <span class="mi">15</span>
+
+
+<div class="viewcode-block" id="addLoggingLevel"><a class="viewcode-back" href="../../chapters/API.html#matpy.log_util.addLoggingLevel">[docs]</a><span class="k">def</span> <span class="nf">addLoggingLevel</span><span class="p">(</span><span class="n">levelName</span><span class="p">,</span> <span class="n">levelNum</span><span class="p">,</span> <span class="n">methodName</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Comprehensively adds a new logging level to the `logging` module and the</span>
+<span class="sd">    currently configured logging class.</span>
+
+<span class="sd">    `levelName` becomes an attribute of the `logging` module with the value</span>
+<span class="sd">    `levelNum`. `methodName` becomes a convenience method for both `logging`</span>
+<span class="sd">    itself and the class returned by `logging.getLoggerClass()` (usually just</span>
+<span class="sd">    `logging.Logger`). If `methodName` is not specified, `levelName.lower()` is</span>
+<span class="sd">    used.</span>
+
+<span class="sd">    To avoid accidental clobberings of existing attributes, this method will</span>
+<span class="sd">    raise an `AttributeError` if the level name is already an attribute of the</span>
+<span class="sd">    `logging` module or if the method name is already present</span>
+
+<span class="sd">    .. rubric:: Example</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        addLoggingLevel(&#39;TRACE&#39;, logging.DEBUG - 5)</span>
+<span class="sd">        logging.getLogger(__name__).setLevel(&quot;TRACE&quot;)</span>
+<span class="sd">        logging.getLogger(__name__).trace(&#39;that worked&#39;)</span>
+<span class="sd">        logging.trace(&#39;so did this&#39;)</span>
+<span class="sd">        logging.TRACE</span>
+<span class="sd">        5</span>
+
+<span class="sd">    Taken from StackOverflow because the code was beautifully simple.</span>
+<span class="sd">    Author: Mad Physicist (Mar 4, 2016)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">methodName</span><span class="p">:</span>
+        <span class="n">methodName</span> <span class="o">=</span> <span class="n">levelName</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">levelName</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> already defined in logging module&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">levelName</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">methodName</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> already defined in logging module&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">methodName</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">getLoggerClass</span><span class="p">(),</span> <span class="n">methodName</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+            <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> already defined in logger class&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">methodName</span><span class="p">))</span>
+
+    <span class="c1"># This method was inspired by the answers to Stack Overflow post</span>
+    <span class="c1"># http://stackoverflow.com/q/2183233/2988730, especially</span>
+    <span class="c1"># http://stackoverflow.com/a/13638084/2988730</span>
+    <span class="k">def</span> <span class="nf">logForLevel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">levelNum</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">levelNum</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">logToRoot</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">levelNum</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">levelNum</span><span class="p">,</span> <span class="n">levelName</span><span class="p">)</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">levelName</span><span class="p">,</span> <span class="n">levelNum</span><span class="p">)</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">getLoggerClass</span><span class="p">(),</span> <span class="n">methodName</span><span class="p">,</span> <span class="n">logForLevel</span><span class="p">)</span>
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">methodName</span><span class="p">,</span> <span class="n">logToRoot</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomLogger"><a class="viewcode-back" href="../../chapters/API.html#matpy.log_util.CustomLogger">[docs]</a><span class="k">class</span> <span class="nc">CustomLogger</span><span class="p">(</span><span class="n">getLoggerClass</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class is just created ot add the VERBOSE level. More</span>
+<span class="sd">    level could be added to this class to accommodate other levels.</span>
+
+<span class="sd">    The variable VERBOSE is given at the top of the module. That way it can be</span>
+<span class="sd">    changed for all depending function</span>
+
+<span class="sd">    The class makes it possible to add extra levels to the classic logger</span>
+<span class="sd">    The line `addLoggingLevel(&quot;VERBOSE&quot;, VERBOSE)` in the initalization is</span>
+<span class="sd">    an example on how to add a level using the `addLoggingLevel` function</span>
+<span class="sd">    located in this module.</span>
+
+<span class="sd">    Don&#39;t forget to edit the `CustomFormatter` to accommodate for your</span>
+<span class="sd">    introduced levels if you are using the `CustomFormatter`.</span>
+<span class="sd">    An example is given in the class under `# EXTRA LEVELS` for the</span>
+<span class="sd">    `VERBOSE` level.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">NOTSET</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+
+        <span class="n">addLoggingLevel</span><span class="p">(</span><span class="s2">&quot;VERBOSE&quot;</span><span class="p">,</span> <span class="n">VERBOSE</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CustomFormatter"><a class="viewcode-back" href="../../chapters/API.html#matpy.log_util.CustomFormatter">[docs]</a><span class="k">class</span> <span class="nc">CustomFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Logging Formatter to add colors and count warning / errors</span>
+
+<span class="sd">    This class organizes the customization of the logging output.</span>
+<span class="sd">    The formatter as of now outputs the logs in the following manner in</span>
+<span class="sd">    order of Loglevel:</span>
+
+<span class="sd">    .. rubric:: Example Output</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication ----- [INFO]: Initializing matrices...</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication ---- [ERROR]: Test Error Level (matrixmultiplication.py:60)</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication - [CRITICAL]: Test Critical Level (matrixmultiplication.py:61)</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]: Test Verbose Level</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]: A:</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [1 2]</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [3 4]</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]: B:</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [2 3 5]</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [VERBOSE]:     [4 5 6]</span>
+<span class="sd">        [2020-04-03 14:17:18] -- matpy.matrixmultiplication -- [WARNING]: Matrix size exceeds 4 elements.</span>
+
+<span class="sd">    These outputs are colored in the actual output but the formatting is just</span>
+<span class="sd">    as shown above. VERBOSE is an extra added LogLevel formatting. More can be</span>
+<span class="sd">    added below the comment `EXTRA LEVELS` in the same way the VERBOSE is added.</span>
+
+<span class="sd">    The variable VERBOSE is given at the top of the module. That way it can be</span>
+<span class="sd">    changed for all depending function</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Setting up the different ANSI color escape sequences for color terminals:</span>
+    <span class="c1"># Codes are 3/4-bit codes from here:</span>
+    <span class="c1"># https://en.wikipedia.org/wiki/ANSI_escape_code</span>
+    <span class="c1"># For 8-colors: use &quot;\x1b[38;5;&lt;n&gt;m&quot; where &lt;n&gt; is the number of the color.</span>
+    <span class="n">grey</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;21m&quot;</span>
+    <span class="n">green</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;5;64m&quot;</span>
+    <span class="n">light_grey</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;5;240m&quot;</span>
+    <span class="n">dark_blue</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;5;25m&quot;</span>
+    <span class="n">light_blue</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;5;69m&quot;</span>
+    <span class="n">yellow</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[33;21m&quot;</span>
+    <span class="n">red</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[31;21m&quot;</span>
+    <span class="n">dark_red</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[38;5;97m&quot;</span>
+    <span class="n">bold_red</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[31;1m&quot;</span>
+    <span class="n">reset</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\x1b</span><span class="s2">[0m&quot;</span>
+
+    <span class="c1"># Formats The spaces accommodate the different length of the words and</span>
+    <span class="c1"># amount of detail wanted in the message:</span>
+    <span class="n">time_fmt</span> <span class="o">=</span> <span class="n">light_grey</span> <span class="o">+</span> <span class="s2">&quot;[</span><span class="si">%(asctime)s</span><span class="s2">]&quot;</span> <span class="o">+</span> <span class="n">reset</span>
+    <span class="n">name_fmt</span> <span class="o">=</span> <span class="s2">&quot;-- </span><span class="si">%(name)s</span><span class="s2"> -&quot;</span>
+    <span class="n">pre_fmt</span> <span class="o">=</span> <span class="n">time_fmt</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">name_fmt</span>
+
+    <span class="n">debug_fmt</span> <span class="o">=</span> <span class="s2">&quot;--- [&quot;</span> <span class="o">+</span> <span class="n">light_blue</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reset</span> <span class="o">+</span> <span class="s2">&quot;]:&quot;</span> \
+        <span class="o">+</span> <span class="n">light_blue</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="si">%(message)s</span><span class="s2"> (</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">)&quot;</span> <span class="o">+</span> <span class="n">reset</span>
+    <span class="n">info_fmt</span> <span class="o">=</span> <span class="s2">&quot;---- [</span><span class="si">%(levelname)s</span><span class="s2">]: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+    <span class="n">warning_fmt</span> <span class="o">=</span> <span class="s2">&quot;- [&quot;</span> <span class="o">+</span> <span class="n">yellow</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reset</span> <span class="o">+</span> <span class="s2">&quot;]:&quot;</span> \
+                 <span class="o">+</span> <span class="n">yellow</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="si">%(message)s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reset</span>
+    <span class="n">error_fmt</span> <span class="o">=</span> <span class="s2">&quot;--- [&quot;</span> <span class="o">+</span> <span class="n">red</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reset</span> <span class="o">+</span> <span class="s2">&quot;]:&quot;</span> \
+        <span class="o">+</span> <span class="n">red</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="si">%(message)s</span><span class="s2"> (</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">)&quot;</span> <span class="o">+</span> <span class="n">reset</span>
+    <span class="n">critical_fmt</span> <span class="o">=</span> <span class="s2">&quot; [&quot;</span> <span class="o">+</span> <span class="n">bold_red</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">reset</span> <span class="o">+</span> <span class="s2">&quot;]:&quot;</span> \
+        <span class="o">+</span> <span class="n">bold_red</span> <span class="o">+</span> <span class="s2">&quot; </span><span class="si">%(message)s</span><span class="s2"> (</span><span class="si">%(filename)s</span><span class="s2">:</span><span class="si">%(lineno)d</span><span class="s2">)&quot;</span> <span class="o">+</span> <span class="n">reset</span>
+
+    <span class="c1"># Create format dictionary</span>
+    <span class="n">FORMATS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span> <span class="n">pre_fmt</span> <span class="o">+</span> <span class="n">debug_fmt</span><span class="p">,</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span> <span class="n">pre_fmt</span> <span class="o">+</span> <span class="n">info_fmt</span><span class="p">,</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">:</span> <span class="n">pre_fmt</span> <span class="o">+</span> <span class="n">warning_fmt</span><span class="p">,</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">:</span> <span class="n">pre_fmt</span> <span class="o">+</span> <span class="n">error_fmt</span><span class="p">,</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">:</span> <span class="n">pre_fmt</span> <span class="o">+</span> <span class="n">critical_fmt</span>
+    <span class="p">}</span>
+
+    <span class="c1"># EXTRA LEVELS</span>
+    <span class="c1"># Verbose</span>
+    <span class="n">addLoggingLevel</span><span class="p">(</span><span class="s1">&#39;VERBOSE&#39;</span><span class="p">,</span> <span class="n">VERBOSE</span><span class="p">)</span>
+    <span class="n">verbose_fmt</span> <span class="o">=</span> <span class="s2">&quot;- [</span><span class="si">%(levelname)s</span><span class="s2">]: </span><span class="si">%(message)s</span><span class="s2">&quot;</span>
+    <span class="n">FORMATS</span><span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">VERBOSE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pre_fmt</span> <span class="o">+</span> <span class="n">verbose_fmt</span>  <span class="c1"># add to format dictionary</span>
+
+    <span class="c1"># Initialize with a default logging.Formatter</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;-- </span><span class="si">%(name)s</span><span class="s2"> ---- [</span><span class="si">%(levelname)s</span><span class="s2">]: </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+                         <span class="n">datefmt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="CustomFormatter.format"><a class="viewcode-back" href="../../chapters/API.html#matpy.log_util.CustomFormatter.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+
+        <span class="c1"># Use the logging.LEVEL to get the right formatting</span>
+        <span class="n">log_fmt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FORMATS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">levelno</span><span class="p">)</span>
+
+        <span class="c1"># Create new formatter with modified timestamp formatting.</span>
+        <span class="n">formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="n">log_fmt</span><span class="p">,</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Return</span>
+        <span class="k">return</span> <span class="n">formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">modify_logger</span><span class="p">(</span><span class="n">logger</span><span class="p">):</span>
+
+    <span class="c1"># Make sure only this module prints the logger information.</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Add formatter</span>
+    <span class="n">ch</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">ch</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">CustomFormatter</span><span class="p">())</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">logger</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, htmapp development team
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

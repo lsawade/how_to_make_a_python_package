@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>matpy.matrixmultiplication &mdash; How to make a python package 0.0.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> How to make a python package
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/unittesting.html">Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/logging.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/API.html"><code class="docutils literal notranslate"><span class="pre">matpy</span></code> API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../chapters/pypi.html">Distributing your package</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">How to make a python package</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>matpy.matrixmultiplication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for matpy.matrixmultiplication</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot; This is a sample module that defines a bunch of matrix multiplication</span>
+<span class="sd">function and puts them together in a class. So you it&#39;s easier to understand</span>
+<span class="sd">how to actually use classes.</span>
+
+<span class="sd">:author:</span>
+<span class="sd">    Lucas Sawade (lsawade@princeton.edu, 2019)</span>
+
+<span class="sd">:license:</span>
+<span class="sd">    GNU Lesser General Public License, Version 3</span>
+<span class="sd">    (http://www.gnu.org/copyleft/lgpl.html)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">.log_util</span> <span class="kn">import</span> <span class="n">modify_logger</span>
+
+<span class="c1"># Setup Logger</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">modify_logger</span><span class="p">(</span><span class="n">logger</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="matmul"><a class="viewcode-back" href="../../chapters/API.html#matpy.matrixmultiplication.matmul">[docs]</a><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Standard wrapper around numnpy&#39;s function.</span>
+
+<span class="sd">    :param a: matrix A</span>
+<span class="sd">    :type a: numpy.ndarray</span>
+<span class="sd">    :param b: matrix B</span>
+<span class="sd">    :type b: numpy.ndarray</span>
+<span class="sd">    :return: multiplied matrix</span>
+
+<span class="sd">    Usage:</span>
+<span class="sd">        Assume that a and b are 2D numpy arrays that match in size for</span>
+<span class="sd">        multiplication.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            from matpy.matrixmultiplication import matmul</span>
+<span class="sd">            c = matmul(a, b)</span>
+<span class="sd">            print(c)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First check whether the matrices can be multiplied! And for this case</span>
+    <span class="c1"># are 2D</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;A or B is not of dimension 2&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;A&#39;s 2nd dimension does not match B&#39;s first dimension&quot;</span><span class="p">)</span>
+
+    <span class="sd">&#39;&#39;&#39; Below just some usages of loggers. different levels of logging </span>
+<span class="sd">    can be set to control the printed output of a package.&#39;&#39;&#39;</span>
+
+    <span class="c1"># Just for testing the loggers.</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Test Debug Level&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Test Error Level&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="s2">&quot;Test Critical Level&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;Test Verbose Level&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Logging the matrices</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;A:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array_str</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">max_line_width</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Matrix size exceeds 4 elements.&quot;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;B:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">verbose</span><span class="p">(</span><span class="s2">&quot;    &quot;</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array_str</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">max_line_width</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Matrix size exceeds 4 elements.&quot;</span><span class="p">)</span>
+    <span class="c1"># Compute the stuff</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">c</span></div>
+
+
+<div class="viewcode-block" id="dotprod"><a class="viewcode-back" href="../../chapters/API.html#matpy.matrixmultiplication.dotprod">[docs]</a><span class="k">def</span> <span class="nf">dotprod</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Standard wrapper around numpy&#39;s function.</span>
+
+<span class="sd">    :param a: matrix A</span>
+<span class="sd">    :type a: numpy.ndarray</span>
+<span class="sd">    :param b: matrix B</span>
+<span class="sd">    :type b: numpy.ndarray</span>
+<span class="sd">    :return: multiplied matrix</span>
+
+<span class="sd">    Usage:</span>
+<span class="sd">        Assume that a and b are 2D numpy arrays that match in size for</span>
+<span class="sd">        multiplication.</span>
+
+<span class="sd">    .. rubric:: Example</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from matpy.matrixmultiplication import dotprod</span>
+<span class="sd">        c = dotprod(a, b)</span>
+<span class="sd">        print(c)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># First check whether the matrices can be multiplied! And for this case</span>
+    <span class="c1"># are 2D</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;A or B is not of dimension 2&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;A&#39;s 2nd dimension does not match B&#39;s first dimension&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Compute the multiplication</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">c</span></div>
+
+
+<div class="viewcode-block" id="MatrixMultiplication"><a class="viewcode-back" href="../../chapters/API.html#matpy.matrixmultiplication.MatrixMultiplication">[docs]</a><span class="k">class</span> <span class="nc">MatrixMultiplication</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class to handle 2D matrix multiplication.</span>
+
+<span class="sd">    Usage:</span>
+<span class="sd">        Assume that a and b are 2D numpy arrays that match in size for</span>
+<span class="sd">        multiplication.</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from matpy.matrixmultiplication import MatrixMultiplication</span>
+<span class="sd">            &gt;&gt;&gt; MM = MatrixMultiplication(a, b, method=&quot;matmul&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; c = MM()</span>
+<span class="sd">            &gt;&gt;&gt; print(c)</span>
+
+<span class="sd">        Or using the other method</span>
+
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from matpy.matrixmultiplication import MatrixMultiplication</span>
+<span class="sd">            &gt;&gt;&gt; MM = MatrixMultiplication(a, b, method=&quot;dotprod&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; c = MM()</span>
+<span class="sd">            &gt;&gt;&gt; print(c)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;matmul&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; This function initializes the MatrixMultiplication class.</span>
+
+<span class="sd">        :param a: matrix A</span>
+<span class="sd">        :type a: numpy.ndarray</span>
+<span class="sd">        :param b: matrix B</span>
+<span class="sd">        :type b: numpy.ndarray</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">method</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;matmul&quot;</span><span class="p">,</span> <span class="s2">&quot;dotprod&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Method not available&quot;</span><span class="p">)</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Initializing matrices...&quot;</span><span class="p">)</span>
+        <span class="c1"># Just assigning the variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span>
+
+        <span class="c1"># Here sys.modules[__name__] refers to the module if you had</span>
+        <span class="c1"># imported and outside module, e.g., `import os`, to get the join</span>
+        <span class="c1"># function you would have to write</span>
+        <span class="c1"># getattr(getattr(os, &quot;path&quot;), &quot;join&quot;).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">],</span> <span class="n">method</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Simple call function that executes the multiplication.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            This ``__call__`` function can of course take arguments. Let&#39;s</span>
+<span class="sd">            say you create an interpolator with a specified amount of points.</span>
+<span class="sd">            You could stick in your query points as arguments.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, htmapp development team
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
