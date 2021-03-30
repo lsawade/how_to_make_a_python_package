@@ -45,10 +45,11 @@ I will however go through the basics as for example a step-wise breakdown.
 Steps involved
 ==============
 
-1. Create a ``setup.py``
+1. Create a ``setup.cfg`` and/or a ``setup.py``
 2. Create a README
-3. Create a LICENSE file and name it in ``setup.py``.
+3. Create a LICENSE file and name it in ``setup.cfg``.
    Check out classifiers `here <https://pypi.org/classifiers/>`_.
+4. Create a pyproject.toml (see the tutorial linked above).
 4. Generating the distribution files
 5. Create normal ``PyPi`` account and a test account.
 6. Upload project using the PyPi
@@ -60,12 +61,14 @@ Before the steps your package should have this structure:
 
     how_to_make_a_python_package/
       |__ tests/
-      |__ matpy/
-      |    |__ __init__.py
-      |    |__ matrixmultiplication.py
+      |__ src/
+      |    |__ matpy/
+      |         |__ __init__.py
+      |         |__ matrixmultiplication.py
       |__ tests/
       |    |____test_matmul_and_dot.py
       |__ setup.py
+      |__ setup.cfg
       |__ LICENSE
       |__ README.md
 
@@ -81,9 +84,10 @@ and after following the steps 2 additional directories should appear:
       |    |__ how_to_make_a_python_package-0.0.2.tar.gz
       |    |__ how_to_make_a_python_package-0.0.2-py3-none-any.whl
       |__ tests/
-      |__ matpy/
-      |    |__ __init__.py
-      |    |__ matrixmultiplication.py
+      |__ src/
+      |    |__ matpy/
+      |         |__ __init__.py
+      |         |__ matrixmultiplication.py
       |__ tests/
       |    |____test_matmul_and_dot.py
       |__ setup.py
@@ -93,31 +97,21 @@ and after following the steps 2 additional directories should appear:
 The build and dist are created to make it possible for other users to
 download the package onto their system.
 
-``setup.py``
+``setup.cfg``
 ____________
 
-The ``setup.py`` (:ref:`setup-py`) makes sure that all the necessary info to
+The ``setup.cfg`` (:ref:`setup-cfg`) makes sure that all the necessary info to
 install and distribute your package is known. Important features to note are
 
-- If you choose to load the long description from a text file that is not an
-  ``.rst`` file, you need to specify the file type using the keyword argument
+- Specify all the requirements for your package in the keyword argument
 
-  .. code-block:: python
+  .. code-block:: bash
+    [options]
+    install_requires = numpy; my_odd_requirement
 
-      long_description_content_type="text/markdown"
-
-  if the file type is MarkDown for example.
-
-- Specify all the requirements for the installation in the keyword argument
-
-  .. code-block:: python
-
-      install_requires=["numpy", "<other_package>"]
-
-  in form of a list. If you don't and the package is installed into an
-  environment that does not have the requirements installed, the module will
-  error, of course. Hence, it is convenient to mention
-  requirements here.
+  in form illustrated above.
+  In this case, the ``environment.yml`` becomes obsolete and we will only
+  rely on Pypi.
 
 - The classifiers have to have a certain format. If they aren't, the upload
   will fail. Check out classifiers `here <https://pypi.org/classifiers/>`_.
@@ -127,33 +121,37 @@ The rest is probably self-explaining.
 Here, a setup file with all the bare necessities (Copied from
 `https://packaging.python.org/tutorials/packaging-projects/`_):
 
-.. code-block:: python
+.. code-block:: bash
     :linenos:
 
-    import setuptools
+    [metadata]
+    # replace with your username:
+    name = example-pkg-YOUR-USERNAME-HERE
+    version = 0.0.1
+    author = Example Author
+    author_email = author@example.com
+    description = A small example package
+    long_description = file: README.md
+    long_description_content_type = text/markdown
+    url = https://github.com/pypa/sampleproject
+    project_urls =
+        Bug Tracker = https://github.com/pypa/sampleproject/issues
+    classifiers =
+        Programming Language :: Python :: 3
+        License :: OSI Approved :: MIT License
+        Operating System :: OS Independent
 
-    with open("README.md", "r") as fh:
-        long_description = fh.read()
+    [options]
+    package_dir =
+        = src
+    packages = find:
+    python_requires = >=3.6
 
-    setuptools.setup(
-        name="example-pkg-YOUR-USERNAME-HERE", # Replace with your own username
-        version="0.0.1",
-        author="Example Author",
-        author_email="author@example.com",
-        description="A small example package",
-        long_description=long_description,
-        long_description_content_type="text/markdown",
-        url="https://github.com/pypa/sampleproject",
-        packages=setuptools.find_packages(),
-        classifiers=[
-            "Programming Language :: Python :: 3",
-            "License :: OSI Approved :: MIT License",
-            "Operating System :: OS Independent",
-        ],
-        python_requires='>=3.6',
-    )
+    [options.packages.find]
+    where = src
 
-The projects own ``setup.py`` is a bit longer and has more features.
+The projects own ``setup.cfg`` is a bit longer and has more features. In addition,
+we added a ``setup.py`` to support some more advanced functions.
 
 
 LICENSE

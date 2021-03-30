@@ -1,38 +1,41 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Documentation &mdash; How to make a python package 0.0.1 documentation</title>
+  <title>Documentation &mdash; How to make a python package 0.0.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
   
 
   
   
-  
+
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="matpy API" href="API.html" />
@@ -73,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -95,7 +99,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#offline-docs">Offline Docs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#publishing-your-documentation-online-2-ways">Publishing your documentation online 2 ways</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-your-documentation-online-2-ways">Publishing your documentation online: 2 ways</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gh-pages"><cite>gh-pages</cite></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#create-branch">Create branch</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#delete-previous-build">Delete previous build</a></li>
@@ -119,6 +123,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -153,18 +158,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Documentation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/chapters/documentation.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -181,18 +188,18 @@
   <div class="section" id="documentation">
 <h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h1>
 <p>Everyone should want their code documented. The simple reason for that is
-that nobody will be able to use your code of there is no documentation. So,
+that nobody will be able to use your code if there is no documentation. So,
 let’s get started.</p>
 <div class="section" id="pre-setup-rambling">
 <h2>Pre-Setup-Rambling<a class="headerlink" href="#pre-setup-rambling" title="Permalink to this headline">¶</a></h2>
-<p>First of all, all documentation in for Python code is written in
+<p>First of all, all documentation for Python code is written in
 ReStructuredText, short: <code class="docutils literal notranslate"><span class="pre">RST</span></code>. It is extremely similar to Markdown, but it
 has a few advantages when it comes to writing longer documentation. For example,
-if you want to write so much documentation that the it’s easier to split
-things up into chapter, you can simply include chapter files into a main file
+if you want to write so much documentation that it’s easier to split
+things up into chapters, you can simply include chapter files into a main file
 (much like in LateX), which is not possible using Markdown. But this is just
-one of the perks. When you start working with sphinx you will start noticing
-the subtle and the obvious differences between <code class="docutils literal notranslate"><span class="pre">RST</span></code> and <code class="docutils literal notranslate"><span class="pre">Markdown</span></code>.</p>
+one of the perks. When you start working with sphinx, you will start noticing
+the subtle and obvious differences between <code class="docutils literal notranslate"><span class="pre">RST</span></code> and <code class="docutils literal notranslate"><span class="pre">Markdown</span></code>.</p>
 </div>
 <div class="section" id="setting-up-sphinx">
 <h2>Setting up Sphinx<a class="headerlink" href="#setting-up-sphinx" title="Permalink to this headline">¶</a></h2>
@@ -240,7 +247,10 @@ shown below:</p>
 the docstrings of your functions and classes are gonna be read and added when
 the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">auto-module</span></code> directive is called. <code class="docutils literal notranslate"><span class="pre">autoclass_content</span> <span class="pre">=</span> <span class="pre">'both'</span></code>
 makes sure that when a class is documented in your code the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> part
-will be documented as well. Finally, the <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code> is simply nice
+will be documented as well. If you are writing your docstrings in a language other
+than <cite>sphinx</cite> (e.g. <cite>Numpy</cite>, which looks nicer (less dense) in your script)
+adding <code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> to extensions, will auto-translate
+those docstrings. Finally, the <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code> is simply nice
 to look at. There are other themes out there. But I just like this one.</p>
 </div>
 <div class="section" id="index-rst">
@@ -399,7 +409,7 @@ offline webpage when opened.</p>
 </div>
 </div>
 <div class="section" id="publishing-your-documentation-online-2-ways">
-<h2>Publishing your documentation online 2 ways<a class="headerlink" href="#publishing-your-documentation-online-2-ways" title="Permalink to this headline">¶</a></h2>
+<h2>Publishing your documentation online: 2 ways<a class="headerlink" href="#publishing-your-documentation-online-2-ways" title="Permalink to this headline">¶</a></h2>
 <p>There are two ways you can publish your documentation online. You could either
 publish it through an external service such as <cite>ReadTheDocs</cite>, or, my now
 preferred way, through <cite>github-pages</cite>, directly from your github repo from a
@@ -417,7 +427,8 @@ Since I prefer the <cite>github-pages</cite>, let’s start with that one.</p>
 to make your Github repo public. If it is not public, github refuses to host
 online documenation (which makes sense). You can follow these instructions
 either way. The disadvantage is that you won’t be able to access the
-online documenation (not the case for the <cite>ReadTheDocs</cite> documentation).
+online documenation (that is also the case for the <cite>ReadTheDocs</cite> documentation
+if you don’t have a <cite>pro</cite> account).
 The advantage is that once you have set this up and decide to make you
 repository public, it takes seconds to host your
 up-to-date documentation (almost by yourself!).</p>
@@ -478,7 +489,7 @@ and we add a new <cite>target</cite> to our <cite>Makefile</cite>, called <cite>
 <span class="nv">SPHINXBUILD</span>   <span class="o">?=</span> sphinx-build
 <span class="nv">SOURCEDIR</span>     <span class="o">=</span> docs/source
 <span class="nv">BUILDDIR</span>      <span class="o">=</span> docs/build
-<span class="nv">GH_PAGES_SOURCES</span> <span class="o">=</span> docs matpy tests setup.py .readthedocs.yml environment.yml Makefile
+<span class="nv">GH_PAGES_SOURCES</span> <span class="o">=</span> docs src/matpy tests setup.py .readthedocs.yml environment.yml Makefile
 
 <span class="c"># Put it first so that &quot;make&quot; without argument is like &quot;make help&quot;.</span>
 <span class="nf">help</span><span class="o">:</span>
@@ -558,7 +569,7 @@ branch.</p>
 </div>
 <p>This line gets all the necessary files listed in the <cite>GH_PAGES_SOURCES</cite>
 variable declaration at the top of the file to create your documentaion;
-i.e. the documentation folder, the package filde the test folder, and other
+i.e. the documentation folder, the package filed the test folder, and other
 files which are presented in the documentation later on.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -596,10 +607,9 @@ separately.</p>
 </div>
 <div class="section" id="commit-push-branch-to-github-repo">
 <h4>Commit &amp; push branch to github repo<a class="headerlink" href="#commit-push-branch-to-github-repo" title="Permalink to this headline">¶</a></h4>
-<p>This is a pretty long one liner, but to split it up by the <cite>&amp;&amp;</cite>, it first
+<p>This is a pretty long one-liner, but to split it up by the <cite>&amp;&amp;</cite>, it first
 commits the changes with a message to the <cite>gh-pages</cite> <cite>branch</cite>. Second,
-it pushes the changes to the online repo <cite>gh-pages</cite> branch. (I don’t remember
-whether you had to create that one manually, LMK, please, Peter). Finally,
+it pushes the changes to the online repo <cite>gh-pages</cite> branch. Finally,
 we switch back to the master branch.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git ci -m <span class="s2">&quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot;</span> <span class="o">&amp;&amp;</span> git push origin gh-pages <span class="p">;</span> git checkout master
 </pre></div>
@@ -673,8 +683,8 @@ necessary to build your documentation and how to build it. Let’s take a look.<
 </td></tr></table></div>
 <p>There are a few important steps here. The first entry in this file that needs
 to be manually set is the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> keyword. The location of the conf.py
-needs to be set in relation to the repository.The second one is the <code class="docutils literal notranslate"><span class="pre">formats</span></code>
-keyword, which if you want <code class="docutils literal notranslate"><span class="pre">html</span></code>, <code class="docutils literal notranslate"><span class="pre">PDF</span></code> and <code class="docutils literal notranslate"><span class="pre">EPub</span></code> built and
+needs to be set in relation to the repository. The second one is the <code class="docutils literal notranslate"><span class="pre">formats</span></code>
+keyword, which if you want <code class="docutils literal notranslate"><span class="pre">htmlzip</span></code>, <code class="docutils literal notranslate"><span class="pre">PDF</span></code> and <code class="docutils literal notranslate"><span class="pre">EPub</span></code> built and
 donwloadable from the page, is simply ‘all’. Otherwise specify.
 Much like for the installation and the unit testing we also need to specify the
 <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> with the keywords <code class="docutils literal notranslate"><span class="pre">conda</span></code> and <code class="docutils literal notranslate"><span class="pre">environment</span></code>. Last but
@@ -695,29 +705,29 @@ a bit until the build is done, but eventually you can click on the <code class="
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="API.html" class="btn btn-neutral float-right" title="matpy API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="logging.html" class="btn btn-neutral float-left" title="Logging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="API.html" class="btn btn-neutral float-right" title="matpy API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="logging.html" class="btn btn-neutral float-left" title="Logging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Lucas Sawade
+        &#169; Copyright 2021, htmapp development team.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -725,7 +735,6 @@ a bit until the build is done, but eventually you can click on the <code class="
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

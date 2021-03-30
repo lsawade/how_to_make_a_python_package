@@ -1,38 +1,41 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installation &mdash; How to make a python package 0.0.1 documentation</title>
+  <title>Installation &mdash; How to make a python package 0.0.3 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
   
 
   
   
-  
+
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Unit Testing" href="unittesting.html" />
@@ -73,6 +76,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -85,10 +89,11 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#actual-installation">Actual installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setup-cfg"><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#scripts-argument">Scripts argument</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#environment-yml"><code class="docutils literal notranslate"><span class="pre">environment.yml</span></code></a></li>
 </ul>
 </li>
@@ -102,6 +107,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -136,18 +142,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Installation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/chapters/installation.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -163,12 +171,12 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>There are two things necessary for a good Python package installation. One,
-the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file which controls the installation of the package itself.
+<p>There are two things necessary for a good Python package installation. First,
+the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> and/or <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> files which control the installation of the package itself.
 This is needed, if you want to create your package and use it like a pip
 installed package. The other thing is the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> which is used to
 set up the environment for the installation. For this small project, the
-<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> is using a sledgehammer to crack a nut. I still want to
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> is using a sledgehammer to crack a nut. We will still want to
 keep it here for completeness.</p>
 <div class="section" id="actual-installation">
 <h2>Actual installation<a class="headerlink" href="#actual-installation" title="Permalink to this headline">¶</a></h2>
@@ -184,183 +192,25 @@ source files even though there is no re-installation. Note that this is only
 necessary for packages that you install from the source code and plan on
 modifying!</p>
 </div>
-<div class="section" id="setup-py">
-<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h2>
-<p>Everything important that is needed to install your package is located in the
-<code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file.
-The <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file used for this project contains two small things that
-make your life easier, but first of all let’s look at the whole thing.</p>
-<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; :noindex:</span>
-<span class="sd">Setup.py file that governs the installatino process of</span>
-<span class="sd">`how_to_make_a_python_package` it is used by</span>
-<span class="sd">`conda install -f environment.yml` which will install the package in an</span>
-<span class="sd">environment specified in that file.</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">find_packages</span>
-<span class="kn">from</span> <span class="nn">setuptools.command.test</span> <span class="kn">import</span> <span class="n">test</span> <span class="k">as</span> <span class="n">testcommand</span>
-
-<span class="c1"># Utility function to read the README.md file.</span>
-<span class="c1"># Used for the long_description.  It&#39;s nice, because now 1) we have a top levelx</span>
-<span class="c1"># README.md file and 2) it&#39;s easier to type in the README.md file than to put a raw</span>
-<span class="c1"># string in below ...</span>
-
-<span class="c1"># Function to read and output README into long decription</span>
-<span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;From Wenjie Lei 2019&quot;&quot;&quot;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="n">fname</span><span class="p">))</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Can&#39;t open </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">fname</span>
-
-<span class="n">long_description</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">read</span><span class="p">(</span><span class="s2">&quot;README.md&quot;</span><span class="p">)</span>
-
-
-<span class="c1"># This installs the pytest command. Meaning that you can simply type pytest</span>
-<span class="c1"># anywhere and &quot;pytest&quot; will look for all available tests in the current</span>
-<span class="c1"># directory and subdirectories recursively</span>
-<span class="k">class</span> <span class="nc">PyTest</span><span class="p">(</span><span class="n">testcommand</span><span class="p">):</span>
-    <span class="n">user_options</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;pytest-args=&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s2">&quot;Arguments to pass to py.tests&quot;</span><span class="p">)]</span>
-
-    <span class="k">def</span> <span class="nf">initialize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">testcommand</span><span class="o">.</span><span class="n">initialize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">pytest_args</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">def</span> <span class="nf">run_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="kn">import</span> <span class="nn">pytest</span>
-        <span class="kn">import</span> <span class="nn">sys</span>
-        <span class="n">errno</span> <span class="o">=</span> <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pytest_args</span><span class="p">)</span>
-        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span>
-
-<span class="n">setup</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;htmapp&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;How to make a Python package.&quot;</span><span class="p">,</span>
-    <span class="n">long_description</span><span class="o">=</span><span class="n">long_description</span><span class="p">,</span>
-    <span class="n">long_description_content_type</span><span class="o">=</span><span class="s2">&quot;text/markdown&quot;</span><span class="p">,</span>
-    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.0.2&quot;</span><span class="p">,</span>
-    <span class="n">author</span><span class="o">=</span><span class="s2">&quot;Lucas Sawade&quot;</span><span class="p">,</span>
-    <span class="n">author_email</span><span class="o">=</span><span class="s2">&quot;lsawade@princeton.edu&quot;</span><span class="p">,</span>
-    <span class="n">license</span><span class="o">=</span><span class="s1">&#39;GNU Lesser General Public License, Version 3&#39;</span><span class="p">,</span>
-    <span class="n">keywords</span><span class="o">=</span><span class="s2">&quot;Fun, Education, Learning, Programming&quot;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://github.com/lsawade/how_to_make_a_python_package&#39;</span><span class="p">,</span>
-    <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(),</span>
-    <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">},</span>
-    <span class="n">include_package_data</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;numpy&#39;</span><span class="p">],</span>
-    <span class="n">tests_require</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pytest&#39;</span><span class="p">],</span>
-    <span class="n">cmdclass</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;tests&#39;</span><span class="p">:</span> <span class="n">PyTest</span><span class="p">},</span>
-    <span class="n">zip_safe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-    <span class="n">classifiers</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;Development Status :: 4 - Beta&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;Topic :: Utilities&quot;</span><span class="p">,</span>
-        <span class="p">(</span><span class="s2">&quot;License :: OSI Approved &quot;</span>
-         <span class="s2">&quot;:: GNU General Public License v3 or later (GPLv3+)&quot;</span><span class="p">),</span>
-    <span class="p">],</span>
-    <span class="n">extras_require</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;docs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;sphinx&quot;</span><span class="p">,</span> <span class="s2">&quot;sphinx_rtd_theme&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;tests&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pytest&quot;</span><span class="p">,</span> <span class="s2">&quot;py&quot;</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
-        <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s1">&#39;sample-bin = matpy.bins.sample_bin:main&#39;</span>
-        <span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</td></tr></table></div>
-<p>First, there is a function to read the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> which will then be
-printed into the long_description of the package. It simply reads it as a
-string that is used in the actual setup.
-The second thing which is a great addition for testing is the <code class="docutils literal notranslate"><span class="pre">PyTest</span></code>
-testcommand. After package installation, when you in the repository, a simple</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+<div class="section" id="setup-cfg">
+<span id="id1"></span><h2><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code><a class="headerlink" href="#setup-cfg" title="Permalink to this headline">¶</a></h2>
+<p>In newer installations, the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> replaces parts of the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>
+or, in many cases, even the whole file. Here, we define all the options that
+we want <code class="docutils literal notranslate"><span class="pre">setuptools.setup()</span></code> to use when executing:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
 </pre></div>
 </div>
-<p>will check all subdirectories for tests and run them subsequently. It is
-amazing for debugging your code.
-Other than that, you can look at the simple keywords in the <code class="docutils literal notranslate"><span class="pre">setup(</span> <span class="pre">)</span></code> and
-change them to match you liking. The line <code class="docutils literal notranslate"><span class="pre">packages=find_packages()</span></code> will
-find all directories below the main directory that contain a <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and
-them to your in</p>
+<p>First, let’s have a look at the file in our project:</p>
+<p>Most of the defined options are quite self-explanatory.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>options.packages.find<span class="o">]</span>
+<span class="nv">where</span> <span class="o">=</span> src
+</pre></div>
+</div>
+<p>defines where the package is located. Typically, we have a <code class="docutils literal notranslate"><span class="pre">src</span></code> folder that
+contains the whole package. This line changes the import structure so that we
+can later run <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">matpy</span></code> instead of <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">src.matpy</span></code>. For a list of
+all available parameters and their correct syntax check out the
+<a class="reference external" href="https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html">setuptools documentation</a>.</p>
 <div class="section" id="scripts-argument">
 <h3>Scripts argument<a class="headerlink" href="#scripts-argument" title="Permalink to this headline">¶</a></h3>
 <p>The scripts argument lets you create executables that are installed upon
@@ -421,17 +271,103 @@ traditional binary files), there is the executable sample-bin:</p>
 </pre></div>
 </td></tr></table></div>
 <p>It is normal Python code, but after installation</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e .
 </pre></div>
 </div>
 <p>you can simply run</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sample_bin</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sample-bin
 </pre></div>
 </div>
-<p>from anywhere on your computer. Do make sure that this filenames do not
+<p>from anywhere on your computer, which will run the python command <code class="docutils literal notranslate"><span class="pre">sample_bin()</span></code>. Do make sure that this filenames do not
 conflict with your traditional command line tools such as <code class="docutils literal notranslate"><span class="pre">ls</span></code>, <code class="docutils literal notranslate"><span class="pre">cd</span></code>, etc.
 Otherwise you won’t be able to use your created executables.</p>
 </div>
+</div>
+<div class="section" id="setup-py">
+<span id="id2"></span><h2><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h2>
+<p>In some cases, you might still want to include a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> which used
+to be the old standard way. One of those cases is if you would like to be
+able to use the <code class="docutils literal notranslate"><span class="pre">-e</span></code> (editable) <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> command. Then, you would
+just include a minimal <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> containing the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="c1"># configuration is done in setup.cfg</span>
+<span class="n">setup</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>A second use-case of the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> is illustrated in our sample file:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; :noindex:</span>
+<span class="sd">Setup.py file that governs the installatino process of</span>
+<span class="sd">`how_to_make_a_python_package` it is used by</span>
+<span class="sd">`conda install -f environment.yml` which will install the package in an</span>
+<span class="sd">environment specified in that file.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="kn">from</span> <span class="nn">setuptools.command.test</span> <span class="kn">import</span> <span class="n">test</span> <span class="k">as</span> <span class="n">testcommand</span>
+
+<span class="c1"># This installs the pytest command. Meaning that you can simply type pytest</span>
+<span class="c1"># anywhere and &quot;pytest&quot; will look for all available tests in the current</span>
+<span class="c1"># directory and subdirectories recursively (not yet supported in the setup.cfg)</span>
+
+
+<span class="k">class</span> <span class="nc">PyTest</span><span class="p">(</span><span class="n">testcommand</span><span class="p">):</span>
+    <span class="n">user_options</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;pytest-args=&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s2">&quot;Arguments to pass to py.tests&quot;</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">initialize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">testcommand</span><span class="o">.</span><span class="n">initialize_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pytest_args</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">run_tests</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">pytest</span>
+        <span class="kn">import</span> <span class="nn">sys</span>
+        <span class="n">errno</span> <span class="o">=</span> <span class="n">pytest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pytest_args</span><span class="p">)</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span>
+
+
+<span class="n">setup</span><span class="p">(</span><span class="n">cmdclass</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;tests&#39;</span><span class="p">:</span> <span class="n">PyTest</span><span class="p">})</span>
+</pre></div>
+</td></tr></table></div>
+<p>Here, we add the <code class="docutils literal notranslate"><span class="pre">cmdclass</span></code> keyword, which is not supported by the
+<code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> (at least, at the time of writing). After package installation,
+when you in the repository, a simple</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pytest
+</pre></div>
+</div>
+<p>will check all subdirectories for tests and run them subsequently. It is
+amazing for debugging your code.
+A third case is for more advanced dynamic installs, in which we wish to
+compile our module differenly depending upon which machine it is installed
+on (e.g., different OS or architecture).</p>
 </div>
 <div class="section" id="environment-yml">
 <h2><code class="docutils literal notranslate"><span class="pre">environment.yml</span></code><a class="headerlink" href="#environment-yml" title="Permalink to this headline">¶</a></h2>
@@ -463,9 +399,12 @@ The general structure looks as follows:</p>
 defines extra packages that possibly aren’t available from the conda package
 manager. And additional setting that is often used, but we are skipping here are
 <code class="docutils literal notranslate"><span class="pre">channels</span></code>, which are online locations from where to grab the dependencies
-when they are installed with conda.
+when they are installed with conda (a typical example is conda-forge).
 The file is pretty straightforward, so I’m gonna stop talking about it now.</p>
-<p>To create an environment from the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file simply</p>
+<p>To create an environment from the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file simply execute the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -474,29 +413,29 @@ The file is pretty straightforward, so I’m gonna stop talking about it now.</p
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="unittesting.html" class="btn btn-neutral float-right" title="Unit Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="unittesting.html" class="btn btn-neutral float-right" title="Unit Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Lucas Sawade
+        &#169; Copyright 2021, htmapp development team.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -504,7 +443,6 @@ The file is pretty straightforward, so I’m gonna stop talking about it now.</p
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
