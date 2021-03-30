@@ -7,7 +7,7 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
-GH_PAGES_SOURCES = source ../matpy ../tests ../setup.py ./Makefile
+GH_PAGES_SOURCES = source ../src/matpy ../tests ../setup.py ./Makefile
 
 # Put it first so that "make" without argument is like "make help".
 help:
