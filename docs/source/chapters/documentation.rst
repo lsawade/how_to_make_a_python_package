@@ -328,7 +328,7 @@ necessary to build your documentation and how to build it. Let's take a look.
 There are a few important steps here. The first entry in this file that needs
 to be manually set is the ``sphinx`` keyword. The location of the conf.py
 needs to be set in relation to the repository. The second one is the ``formats``
-keyword, which if you want ``html``, ``PDF`` and ``EPub`` built and
+keyword, which if you want ``htmlzip``, ``PDF`` and ``EPub`` built and
 donwloadable from the page, is simply 'all'. Otherwise specify.
 Much like for the installation and the unit testing we also need to specify the
 ``environment.yml`` with the keywords ``conda`` and ``environment``. Last but
