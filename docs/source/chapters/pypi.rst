@@ -182,7 +182,7 @@ need a couple of things. First, let's update the ``setuptools`` and
 
 .. code-block:: bash
 
-    python3 -m pip install --user --upgrade setuptools wheel
+    python3 -m pip install --U setuptools wheel
 
 
 After updating the packages, we are ready to create the ``dist`` and the
@@ -221,7 +221,7 @@ The next thing you'll need, is the package ``twine``.
 
 .. code-block:: bash
 
-    python3 -m pip install --user --upgrade twine
+    python3 -m pip install -U twine
 
 ``twine`` is the package that helps uploading your package ``dist`` and
 ``build``. After updating, the ``twine`` package, you can upload your package
@@ -276,3 +276,24 @@ points made on
       distributing projects.
     - Read about Packaging binary extensions.
     - Consider alternatives to setuptools such as flit, hatch, and poetry.
+
+
+The final line you would need is the same as in the test upload, without
+the actual test upload:
+
+.. code-block:: bash
+
+    python3 -m twine upload dist/*
+
+
+.. warning::
+
+    Each version can only be uploaded once. So make sure that you really are 
+    sure that everything is fixed before providing a new version.
+
+
+.. note::
+
+    You can use a token in the ``.pypirc`` to upload your package instead of 
+    your user name as well, but note that the tokens for ``test.pypi`` and 
+    the actual pypi are different.
