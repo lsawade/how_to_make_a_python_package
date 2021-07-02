@@ -1,7 +1,8 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   
@@ -11,18 +12,12 @@
   
 
   
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-
-  
   
   
   
 
   
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,6 +29,10 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="matpy API" href="API.html" />
@@ -51,7 +50,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> How to make a python package
+            <a href="../index.html" class="icon icon-home"> How to make a python package
           
 
           
@@ -74,7 +73,6 @@
           
         </div>
 
-        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -121,7 +119,6 @@
             
           
         </div>
-        
       </div>
     </nav>
 
@@ -160,7 +157,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li><a href="../index.html">Docs</a> &raquo;</li>
         
       <li>Documentation</li>
     
@@ -526,13 +523,17 @@ git branch gh-pages
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Do not switch to the branch! One user has reported that <cite>git branch &lt;branch&gt;</cite>
-showed unexpected behaviour by switching to the branch.
-Check whether you are on the <cite>master</cite> branch using:</p>
-<p><cite>git branch</cite></p>
-<p>The branch with the star is the current branch. If it is not on the <cite>master</cite>
-<cite>branch</cite>, switch to the <cite>master</cite> <cite>branch</cite> using</p>
-<p><cite>git checkout master</cite></p>
+<p>Do not switch to the branch! One user has reported that
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">&lt;branch&gt;</span></code> showed unexpected behaviour by switching to the
+branch. Check whether you are on the <cite>master</cite> branch using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git branch
+</pre></div>
+</div>
+<p>The branch with the star is the current branch. If it is not on the
+<code class="docutils literal notranslate"><span class="pre">master</span></code> <code class="docutils literal notranslate"><span class="pre">branch</span></code>, switch to the <code class="docutils literal notranslate"><span class="pre">master</span></code> <code class="docutils literal notranslate"><span class="pre">branch</span></code> using</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
+</pre></div>
+</div>
 </div>
 <p>This creates your documentation branch in your local git repo. Afterwards we can
 call</p>
@@ -563,15 +564,36 @@ branch.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master <span class="k">$(</span>GH_PAGES_SOURCES<span class="k">)</span> .gitignore
 </pre></div>
 </div>
-<p>This line gets all the necessary files listed in the <cite>GH_PAGES_SOURCES</cite>
+<p>This line gets all the necessary files listed in the <code class="docutils literal notranslate"><span class="pre">GH_PAGES_SOURCES</span></code>
 variable declaration at the top of the file to create your documentaion;
 i.e. the documentation folder, the package filed the test folder, and other
 files which are presented in the documentation later on.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">GH_PAGES_SOURCES</span></code> is declared at the top of the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. You should
+really take a look at this line and modify it to check which files and
+folder are required for your documentation. E.g., the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> we
+include here is only there, so that we can include it literally in the
+documentaion. For your package, this file is not needed probably, unless
+you want to show it in the documentation. The same goes for
+<code class="docutils literal notranslate"><span class="pre">tests</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, <code class="docutils literal notranslate"><span class="pre">.readthedocs.yml</span></code>,
+<code class="docutils literal notranslate"><span class="pre">environment.yml</span></code>. All these files we include here, just so that we can
+show them in the documenation.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Double-check your source and build directory location and if they match
+with your sphinx setup:</p>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">SOURCEDIR</span>     <span class="o">=</span> docs/source
+<span class="nv">BUILDDIR</span>      <span class="o">=</span> docs/build
+</pre></div>
+</div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that the <cite>.gitignore</cite> is outside the <cite>GH_PAGES_SOURCES</cite>. We do not
-want to delete the <cite>.gitignore</cite> before we stage and commit our changes
-later on, but all of <cite>GH_PAGES_SOURCES</cite> is deleted. Hence, we check it out
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> is outside the <code class="docutils literal notranslate"><span class="pre">GH_PAGES_SOURCES</span></code>. We do not
+want to delete the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> before we stage and commit our changes
+later on, but all of <code class="docutils literal notranslate"><span class="pre">GH_PAGES_SOURCES</span></code> is deleted. Hence, we check it out
 separately.</p>
 </div>
 </div>
@@ -603,12 +625,26 @@ separately.</p>
 </div>
 <div class="section" id="commit-push-branch-to-github-repo">
 <h4>Commit &amp; push branch to github repo<a class="headerlink" href="#commit-push-branch-to-github-repo" title="Permalink to this headline">¶</a></h4>
-<p>This is a pretty long one-liner, but to split it up by the <cite>&amp;&amp;</cite>, it first
-commits the changes with a message to the <cite>gh-pages</cite> <cite>branch</cite>. Second,
-it pushes the changes to the online repo <cite>gh-pages</cite> branch. Finally,
+<p>This is a pretty long one-liner, but to split it up by the <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code>, it first
+commits the changes with a message to the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> <code class="docutils literal notranslate"><span class="pre">branch</span></code>. Second,
+it pushes the changes to the online repo <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch. Finally,
 we switch back to the master branch.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git ci -m <span class="s2">&quot;Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`&quot;</span> <span class="o">&amp;&amp;</span> git push origin gh-pages <span class="p">;</span> git checkout master
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Recently, Github-Pages changed their default format to Jekyll. For Python
+documentation, however, we compile static html pages. In other words, we
+have to tell Github to not use Jekyll by creating a <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout gh-pages
+touch .nojekyll
+git add .nojekyll
+git commit -im <span class="s1">&#39;Added nojekyll file&#39;</span>
+git push origin gh-pages
+git checkout master
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -716,19 +752,11 @@ a bit until the build is done, but eventually you can click on the <code class="
 
   <div role="contentinfo">
     <p>
-        
         &copy; Copyright 2021, htmapp development team
 
     </p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -739,6 +767,7 @@ a bit until the build is done, but eventually you can click on the <code class="
 
   </div>
   
+
 
   <script type="text/javascript">
       jQuery(function () {

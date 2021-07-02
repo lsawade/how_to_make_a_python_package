@@ -201,16 +201,20 @@ The very first time we need to create a branch called `gh-pages`.
 
 .. note :: 
 
-    Do not switch to the branch! One user has reported that `git branch <branch>`
-    showed unexpected behaviour by switching to the branch. 
-    Check whether you are on the `master` branch using:
+    Do not switch to the branch! One user has reported that 
+    ``git branch <branch>`` showed unexpected behaviour by switching to the 
+    branch. Check whether you are on the `master` branch using:
 
-    `git branch`
+    .. code :: bash
+        
+        git branch
 
-    The branch with the star is the current branch. If it is not on the `master`
-    `branch`, switch to the `master` `branch` using 
+    The branch with the star is the current branch. If it is not on the 
+    ``master`` ``branch``, switch to the ``master`` ``branch`` using 
 
-    `git checkout master`
+    .. code :: bash
+    
+        git checkout master
 
 
 This creates your documentation branch in your local git repo. Afterwards we can
@@ -252,16 +256,38 @@ Get necessary files from `master` `branch`
     
     git checkout master $(GH_PAGES_SOURCES) .gitignore
 
-This line gets all the necessary files listed in the `GH_PAGES_SOURCES`
+This line gets all the necessary files listed in the ``GH_PAGES_SOURCES``
 variable declaration at the top of the file to create your documentaion;
 i.e. the documentation folder, the package filed the test folder, and other
 files which are presented in the documentation later on.
 
+.. warning::
+
+    ``GH_PAGES_SOURCES`` is declared at the top of the ``Makefile``. You should
+    really take a look at this line and modify it to check which files and
+    folder are required for your documentation. E.g., the ``setup.cfg`` we 
+    include here is only there, so that we can include it literally in the
+    documentaion. For your package, this file is not needed probably, unless
+    you want to show it in the documentation. The same goes for 
+    ``tests``, ``setup.py``, ``setup.cfg``, ``.readthedocs.yml``, 
+    ``environment.yml``. All these files we include here, just so that we can 
+    show them in the documenation.
+
+.. warning::   
+
+    Double-check your source and build directory location and if they match
+    with your sphinx setup:
+
+    .. code:: make
+
+        SOURCEDIR     = docs/source
+        BUILDDIR      = docs/build
+
 .. note:: 
 
-    Note that the `.gitignore` is outside the `GH_PAGES_SOURCES`. We do not
-    want to delete the `.gitignore` before we stage and commit our changes 
-    later on, but all of `GH_PAGES_SOURCES` is deleted. Hence, we check it out
+    Note that the ``.gitignore`` is outside the ``GH_PAGES_SOURCES``. We do not
+    want to delete the ``.gitignore`` before we stage and commit our changes 
+    later on, but all of ``GH_PAGES_SOURCES`` is deleted. Hence, we check it out
     separately.
 
 
@@ -302,15 +328,30 @@ Stage the changes
 Commit & push branch to github repo 
 ###################################
 
-This is a pretty long one-liner, but to split it up by the `&&`, it first
-commits the changes with a message to the `gh-pages` `branch`. Second,
-it pushes the changes to the online repo `gh-pages` branch. Finally,
+This is a pretty long one-liner, but to split it up by the ``&&``, it first
+commits the changes with a message to the ``gh-pages`` ``branch``. Second,
+it pushes the changes to the online repo ``gh-pages`` branch. Finally,
 we switch back to the master branch.
 
 .. code-block:: bash
 
     git ci -m "Generated gh-pages for `git log master -1 --pretty=short --abbrev-commit`" && git push origin gh-pages ; git checkout master
 
+
+.. warning::
+
+    Recently, Github-Pages changed their default format to Jekyll. For Python
+    documentation, however, we compile static html pages. In other words, we
+    have to tell Github to not use Jekyll by creating a ``.nojekyll`` file:
+
+    .. code:: bash
+
+        git checkout gh-pages
+        touch .nojekyll
+        git add .nojekyll
+        git commit -im 'Added nojekyll file'
+        git push origin gh-pages
+        git checkout master
 
 
 ReadTheDocs
