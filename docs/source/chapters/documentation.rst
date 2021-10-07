@@ -85,8 +85,27 @@ documented as well. If you are writing your docstrings in a language other than
 ``sphinx.ext.napoleon`` to extensions, will auto-translate those docstrings. The
 last extensions is ``mathjax``, which let's you put LateX into your docstrings
 as shown in the :class:`matpy.matrixmultiplication.MatrixMultiplication`
-docstring. Finally, the ``sphinx_rtd_theme`` is simply nice to look at. There
-are other themes out there. But I just like this one.
+docstring and Equation :eq:`example`. 
+
+.. math:: 
+    :label: example
+    
+    F(x) = \int\, f(x) \, dx 
+
+
+using following syntax.
+
+::
+
+    .. math:: 
+        :label: example
+        
+        F(x) = \int\, f(x) \, dx 
+
+
+and for reference simply use ``:eq:`example```. Finally, the
+``sphinx_rtd_theme`` is simply nice to look at. There are other themes out
+there. But I just like this one.
 
 
 ``index.rst``
