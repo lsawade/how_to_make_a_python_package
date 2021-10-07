@@ -34,7 +34,8 @@ release = '0.0.3'
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.viewcode',
-              'sphinx.ext.githubpages'
+              'sphinx.ext.githubpages',
+              'sphinx.ext.mathjax'
 ]
 
 # For docstring __init__ documentation

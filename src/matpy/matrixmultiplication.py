@@ -139,6 +139,14 @@ class MatrixMultiplication(object):
             >>> MM = MatrixMultiplication(a, b, method="dotprod")
             >>> c = MM()
             >>> print(c)
+
+    Math:
+        Different ways to compute the dot product of two matrices.
+
+        .. math::
+            
+            A_{ij}B_{jk} = C_{ik}
+
     """
 
     def __init__(self, a, b, method="matmul"):
