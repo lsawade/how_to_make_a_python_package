@@ -25,6 +25,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -227,6 +228,7 @@ shown below:</p>
 
 <span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>
               <span class="s1">&#39;sphinx.ext.viewcode&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;sphinx.ext.mathjax&#39;</span><span class="p">,</span>
 <span class="o">...</span>
 <span class="n">autoclass_content</span> <span class="o">=</span> <span class="s1">&#39;both&#39;</span>
 <span class="o">...</span>
@@ -236,15 +238,28 @@ shown below:</p>
 <span class="o">...</span>
 </pre></div>
 </div>
-<p>The extensions enable the possibility on auto documenting your code, meaning
-the docstrings of your functions and classes are gonna be read and added when
-the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">auto-module</span></code> directive is called. <code class="docutils literal notranslate"><span class="pre">autoclass_content</span> <span class="pre">=</span> <span class="pre">'both'</span></code>
-makes sure that when a class is documented in your code the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> part
-will be documented as well. If you are writing your docstrings in a language other
-than <cite>sphinx</cite> (e.g. <cite>Numpy</cite>, which looks nicer (less dense) in your script)
-adding <code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> to extensions, will auto-translate
-those docstrings. Finally, the <code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code> is simply nice
-to look at. There are other themes out there. But I just like this one.</p>
+<p>The extensions enable the possibility on auto documenting your code, meaning the
+docstrings of your functions and classes are gonna be read and added when the
+<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">auto-module</span></code> directive is called. <code class="docutils literal notranslate"><span class="pre">autoclass_content</span> <span class="pre">=</span> <span class="pre">'both'</span></code> makes
+sure that when a class is documented in your code the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> part will be
+documented as well. If you are writing your docstrings in a language other than
+<cite>sphinx</cite> (e.g. <cite>Numpy</cite>, which looks nicer (less dense) in your script) adding
+<code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code> to extensions, will auto-translate those docstrings. The
+last extensions is <code class="docutils literal notranslate"><span class="pre">mathjax</span></code>, which let’s you put LateX into your docstrings
+as shown in the <a class="reference internal" href="API.html#matpy.matrixmultiplication.MatrixMultiplication" title="matpy.matrixmultiplication.MatrixMultiplication"><code class="xref py py-class docutils literal notranslate"><span class="pre">matpy.matrixmultiplication.MatrixMultiplication</span></code></a>
+docstring and Equation <a class="reference internal" href="#equation-example">(1)</a>.</p>
+<div class="math notranslate nohighlight" id="equation-example">
+<span class="eqno">(1)<a class="headerlink" href="#equation-example" title="Permalink to this equation">¶</a></span>\[F(x) = \int\, f(x) \, dx\]</div>
+<p>using following syntax.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">math</span><span class="p">::</span>
+    <span class="p">:</span><span class="n">label</span><span class="p">:</span> <span class="n">example</span>
+
+    <span class="n">F</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> \<span class="nb">int</span>\<span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> \<span class="p">,</span> <span class="n">dx</span>
+</pre></div>
+</div>
+<p>and for reference simply use <code class="docutils literal notranslate"><span class="pre">:eq:`example`</span></code>. Finally, the
+<code class="docutils literal notranslate"><span class="pre">sphinx_rtd_theme</span></code> is simply nice to look at. There are other themes out
+there. But I just like this one.</p>
 </div>
 <div class="section" id="index-rst">
 <h3><code class="docutils literal notranslate"><span class="pre">index.rst</span></code><a class="headerlink" href="#index-rst" title="Permalink to this headline">¶</a></h3>

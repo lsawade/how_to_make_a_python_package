@@ -25,6 +25,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -231,7 +232,9 @@ we want <code class="docutils literal notranslate"><span class="pre">setuptools.
 35
 36
 37
-38</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">[</span>metadata<span class="o">]</span>
+38
+39
+40</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="o">[</span>metadata<span class="o">]</span>
 <span class="c1"># replace with your username:</span>
 <span class="nv">name</span> <span class="o">=</span> htmapp
 <span class="nv">version</span> <span class="o">=</span> <span class="m">0</span>.0.4
@@ -260,7 +263,9 @@ we want <code class="docutils literal notranslate"><span class="pre">setuptools.
 <span class="nv">zip_safe</span> <span class="o">=</span> False
 
 <span class="o">[</span>options.extras_require<span class="o">]</span>
-<span class="nv">docs</span> <span class="o">=</span> sphinx<span class="p">;</span> sphinx_rtd_theme
+<span class="nv">docs</span> <span class="o">=</span> 
+    sphinx 
+    sphinx-rtd-theme
 <span class="nv">tests</span> <span class="o">=</span> pytest<span class="p">;</span> py
 
 <span class="o">[</span>options.entry_points<span class="o">]</span>
